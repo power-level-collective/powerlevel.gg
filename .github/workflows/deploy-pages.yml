@@ -1,0 +1,70 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one Pages deployment at a time; let an in-flight run finish rather than cancel it, so a
+# quick second push can't leave the live site on a half-deployed artifact.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    container:
+      image: node:lts-trixie-slim
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Enable corepack
+        run: corepack enable
+
+      - name: Cache node_modules
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      # Same native runtime dependency the `test` job in ci.yml installs — `yarn export` boots a
+      # real server (same HTTP engine) to crawl it, not just a build step.
+      - name: Install system dependencies
+        run: apt-get update && apt-get install -y libcurl4t64
+
+      - name: Install dependencies
+        run: export REDISMS_DISABLE_POSTINSTALL=true && yarn install --frozen-lockfile
+
+      - name: Lint
+        run: yarn lint
+
+      # Boots a real (ephemeral, in-memory) server — including a throwaway Redis via
+      # redis-memory-server — crawls every page, and writes static HTML/CSS/JS to dist/export.
+      # See apps/www/_social-card.tsx and the "Static Export" docs for how this works.
+      - name: Export static site
+        run: yarn export
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/export
+
+  deploy:
+    needs: export
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

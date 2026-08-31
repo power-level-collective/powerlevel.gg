@@ -27,7 +27,8 @@
     "test": "rapidrest test --coverage",
     "test:watch": "rapidrest test --watch --coverage",
     "release": "rapidrest release",
-    "export": "rapidrest react export"
+    "export": "rapidrest react export",
+    "preexport": "yarn css:build"
   },
   "prettier": {
     "printWidth": 120,
