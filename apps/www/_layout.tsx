@@ -17,8 +17,11 @@ export default function Layout({ children }: PropsWithChildren) {
                 <meta property="og:type" content="website" />
                 <meta property="og:title" content={SITE_TITLE} />
                 <meta property="og:description" content={SITE_DESCRIPTION} />
-                <meta property="og:image" content="/img/logo.png" />
-                <meta name="twitter:card" content="summary" />
+                <meta property="og:image" content="/img/social-card.png" />
+                <meta property="og:image:width" content="2400" />
+                <meta property="og:image:height" content="1260" />
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:image" content="/img/social-card.png" />
 
                 <link rel="icon" href="/favicon.ico" sizes="any" />
                 <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32" />
