@@ -1,0 +1,365 @@
+@import "tailwindcss";
+@source "../";
+@source "../../shared";
+
+/* ---------------------------------------------------------------------------
+ * Fonts — Blender Pro (self-hosted, /public/fonts) for display/headings,
+ * Inter (Google Fonts, linked in _layout.tsx) for body copy.
+ * ------------------------------------------------------------------------- */
+@font-face {
+    font-family: "Blender Pro";
+    src: url("/fonts/Blender-Pro-Book.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("/fonts/Blender-Pro-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("/fonts/Blender-Pro-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("/fonts/Blender-Pro-Heavy.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ---------------------------------------------------------------------------
+ * Design tokens — dark is the default theme; `.light` on <html> overrides.
+ * These live as plain custom properties (not inside @theme) so their values
+ * can change at runtime when the theme toggle flips the class, then get
+ * threaded into Tailwind's theme below via var() so utilities stay reactive.
+ * ------------------------------------------------------------------------- */
+:root {
+    color-scheme: dark;
+
+    --bg: #0a0d13;
+    --bg-elevated: #10141d;
+    --surface: #141824;
+    --surface-2: #1b2130;
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.18);
+
+    --text: #eef1f7;
+    --text-muted: #9aa3b7;
+    --text-faint: #626b7f;
+
+    --gold: #f2af0d;
+    --gold-soft: #f6ca5f;
+    --gold-pale: #fce9ba;
+    --gold-contrast: #1a1206;
+
+    --blue: #3d93ff;
+    --blue-deep: #0d79f2;
+    --blue-contrast: #061426;
+
+    --danger: #f2554d;
+    --success: #33c48a;
+
+    --shadow-color: rgba(0, 0, 0, 0.55);
+}
+
+:root.light {
+    color-scheme: light;
+
+    --bg: #f7f5ee;
+    --bg-elevated: #ffffff;
+    --surface: #ffffff;
+    --surface-2: #f0ece0;
+    --border: rgba(20, 20, 15, 0.1);
+    --border-strong: rgba(20, 20, 15, 0.2);
+
+    --text: #15181f;
+    --text-muted: #575f70;
+    --text-faint: #8790a0;
+
+    --gold: #a3690a;
+    --gold-soft: #c98a1d;
+    --gold-pale: #fbe9c2;
+    --gold-contrast: #1a1206;
+
+    --blue: #0c62cc;
+    --blue-deep: #0d79f2;
+    --blue-contrast: #ffffff;
+
+    --danger: #c9372c;
+    --success: #128a5e;
+
+    --shadow-color: rgba(20, 20, 15, 0.12);
+}
+
+@theme {
+    --font-display: "Blender Pro", "Arial Narrow", "Segoe UI", sans-serif;
+    --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+
+    --color-bg: var(--bg);
+    --color-bg-elevated: var(--bg-elevated);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-border: var(--border);
+    --color-border-strong: var(--border-strong);
+
+    --color-ink: var(--text);
+    --color-ink-muted: var(--text-muted);
+    --color-ink-faint: var(--text-faint);
+
+    --color-gold: var(--gold);
+    --color-gold-soft: var(--gold-soft);
+    --color-gold-pale: var(--gold-pale);
+    --color-gold-contrast: var(--gold-contrast);
+
+    --color-blue: var(--blue);
+    --color-blue-deep: var(--blue-deep);
+    --color-blue-contrast: var(--blue-contrast);
+
+    --color-danger: var(--danger);
+    --color-success: var(--success);
+}
+
+/* ---------------------------------------------------------------------------
+ * Base
+ * ------------------------------------------------------------------------- */
+@layer base {
+    html {
+        font-family: var(--font-body);
+        background: var(--color-bg);
+        color: var(--color-ink);
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: var(--color-bg);
+        color: var(--color-ink);
+        -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4 {
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-wrap: balance;
+    }
+
+    ::selection {
+        background: var(--color-gold);
+        color: var(--color-gold-contrast);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--color-gold);
+        outline-offset: 2px;
+    }
+}
+
+/* ---------------------------------------------------------------------------
+ * Components
+ * ------------------------------------------------------------------------- */
+@layer components {
+    .container-plc {
+        width: 100%;
+        max-width: 78rem;
+        margin-inline: auto;
+        padding-inline: 1.25rem;
+    }
+
+    @media (min-width: 640px) {
+        .container-plc {
+            padding-inline: 2rem;
+        }
+    }
+
+    /* Cut-corner HUD panel. box-shadow is used (not border) so the inset line
+       is clipped along with the rest of the box and follows the cut corners. */
+    .panel-cut {
+        clip-path: polygon(1.1rem 0, 100% 0, 100% calc(100% - 1.1rem), calc(100% - 1.1rem) 100%, 0 100%, 0 1.1rem);
+        background: var(--color-surface);
+        box-shadow: inset 0 0 0 1.5px var(--color-border);
+    }
+
+    .panel-cut-sm {
+        clip-path: polygon(0.6rem 0, 100% 0, 100% calc(100% - 0.6rem), calc(100% - 0.6rem) 100%, 0 100%, 0 0.6rem);
+        background: var(--color-surface);
+        box-shadow: inset 0 0 0 1.5px var(--color-border);
+    }
+
+    .eyebrow {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.75rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--color-gold);
+    }
+
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        font-family: var(--font-display);
+        font-weight: 700;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        font-size: 0.85rem;
+        padding: 0.85rem 1.5rem;
+        clip-path: polygon(0.6rem 0, 100% 0, 100% calc(100% - 0.6rem), calc(100% - 0.6rem) 100%, 0 100%, 0 0.6rem);
+        transition:
+            transform 0.15s ease,
+            filter 0.15s ease,
+            background-color 0.15s ease;
+        cursor: pointer;
+        border: none;
+    }
+
+    .btn:active {
+        transform: translateY(1px);
+    }
+
+    .btn-primary {
+        background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold));
+        color: var(--color-gold-contrast);
+    }
+
+    .btn-primary:hover {
+        filter: brightness(1.08);
+    }
+
+    .btn-secondary {
+        background: var(--color-surface-2);
+        color: var(--color-ink);
+        box-shadow: inset 0 0 0 1.5px var(--color-border-strong);
+    }
+
+    .btn-secondary:hover {
+        box-shadow: inset 0 0 0 1.5px var(--color-gold);
+        color: var(--color-gold);
+    }
+
+    .chip {
+        display: inline-flex;
+        align-items: center;
+        font-family: var(--font-display);
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        padding: 0.3rem 0.65rem;
+        border-radius: 999px;
+        background: var(--color-surface-2);
+        color: var(--color-ink-muted);
+        box-shadow: inset 0 0 0 1px var(--color-border);
+    }
+
+    .badge-level {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.3rem;
+        font-family: var(--font-display);
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--color-gold-soft), var(--color-gold));
+        color: var(--color-gold-contrast);
+        padding: 0.3rem 0.7rem;
+        clip-path: polygon(0.4rem 0, 100% 0, 100% calc(100% - 0.4rem), calc(100% - 0.4rem) 100%, 0 100%, 0 0.4rem);
+    }
+
+    .stat-row {
+        display: grid;
+        grid-template-columns: 6.5rem 1fr 2.25rem;
+        align-items: center;
+        gap: 0.65rem;
+    }
+
+    .stat-track {
+        position: relative;
+        height: 0.5rem;
+        background: var(--color-blue-deep);
+        box-shadow: inset 0 0 0 1px var(--color-border-strong);
+        overflow: hidden;
+    }
+
+    .stat-fill {
+        position: absolute;
+        inset: 0;
+        width: var(--fill, 50%);
+        background: linear-gradient(90deg, var(--color-gold-soft), var(--color-gold));
+    }
+
+    .nav-link {
+        font-family: var(--font-display);
+        font-weight: 500;
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
+        text-transform: uppercase;
+        color: var(--color-ink-muted);
+        transition: color 0.15s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--color-gold);
+    }
+
+    .field-label {
+        font-family: var(--font-display);
+        font-weight: 700;
+        font-size: 0.7rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-ink-muted);
+    }
+
+    .field-input {
+        width: 100%;
+        background: var(--color-bg-elevated);
+        color: var(--color-ink);
+        box-shadow: inset 0 0 0 1.5px var(--color-border-strong);
+        padding: 0.7rem 0.85rem;
+        font-family: var(--font-body);
+        font-size: 0.95rem;
+        transition: box-shadow 0.15s ease;
+    }
+
+    .field-input:focus {
+        box-shadow: inset 0 0 0 1.5px var(--color-gold);
+        outline: none;
+    }
+
+    .avatar-gradient {
+        background: linear-gradient(135deg, var(--color-blue-deep), var(--color-gold));
+    }
+
+    .theme-icon-dark {
+        display: inline-flex;
+    }
+    .light .theme-icon-dark {
+        display: none;
+    }
+    .theme-icon-light {
+        display: none;
+    }
+    .light .theme-icon-light {
+        display: inline-flex;
+    }
+
+    .hud-grid {
+        background-image:
+            linear-gradient(var(--color-border) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-border) 1px, transparent 1px);
+        background-size: 3rem 3rem;
+        -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 45%, transparent 100%);
+        mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black 45%, transparent 100%);
+    }
+}

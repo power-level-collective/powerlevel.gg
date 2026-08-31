@@ -1,0 +1,12 @@
+.claude
+.git
+.github
+.vscode
+*.log
+coverage
+dist
+helm
+junit.xml
+node_modules
+passwords
+test
