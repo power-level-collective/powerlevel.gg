@@ -32,3 +32,6 @@ if (result.errors.length > 0) {
 }
 
 console.log(`[export] Wrote ${result.pages.length} page(s) to dist/export.`);
+
+// Explicitly exit here since the export server doesn't always fully clean up on it's own
+process.exit(0);
