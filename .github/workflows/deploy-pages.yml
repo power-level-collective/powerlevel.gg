@@ -23,18 +23,22 @@ jobs:
     container:
       image: node:lts-trixie-slim
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       - name: Enable corepack
         run: corepack enable
 
+      # Keyed distinctly from ci.yml's cache (which caches node_modules *and* dist together
+      # under the same runner-os+lockfile-hash key). Cache keys are shared repo-wide, not
+      # per-workflow, so reusing that exact key here would restore ci.yml's `dist` from a plain
+      # `yarn build` alongside node_modules — a `dist` that never contains `dist/export`.
       - name: Cache node_modules
         uses: actions/cache@v4
         with:
           path: node_modules
-          key: ${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
+          key: pages-${{ runner.os }}-yarn-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            pages-${{ runner.os }}-yarn-
 
       # libcurl4t64 is the same native runtime dependency the `test` job in ci.yml installs —
       # `yarn export` boots a real server (same HTTP engine) to crawl it, not just a build step.
@@ -54,6 +58,18 @@ jobs:
       # See apps/www/_social-card.tsx and the "Static Export" docs for how this works.
       - name: Export static site
         run: yarn export
+
+      # Fails fast with a clear message here instead of a confusing `tar: No such file or
+      # directory` from the upload step below if the export silently produced nothing.
+      - name: Verify export output
+        run: |
+          if [ ! -f dist/export/index.html ]; then
+            echo "::error::dist/export/index.html not found — the export step did not produce output."
+            find dist -maxdepth 3 2>&1 || echo "(dist/ does not exist)"
+            exit 1
+          fi
+          echo "Export output:"
+          find dist/export -maxdepth 2
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3

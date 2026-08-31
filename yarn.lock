@@ -1270,9 +1270,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rapidrest/react@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@rapidrest/react@npm:1.0.1"
+"@rapidrest/react@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "@rapidrest/react@npm:1.0.2"
   dependencies:
     cross-spawn: "npm:^7.0.6"
   peerDependencies:
@@ -1295,7 +1295,7 @@ __metadata:
       optional: true
   bin:
     rapidreact: dist/cli/cli.js
-  checksum: 10c0/e4e348aaf5ee5364fd3023b7384bb17b1fbf459190203b3def2962093a7388d34c2c824e64ac67dc87e15a05197f3911d587d4f66872ed590ace25265a18a9f3
+  checksum: 10c0/278ebd14f21451e14e70cfccf4710f00c917a1ba9d40b677eef0c994bacd8f28490af672c9cf0992f40096d9f3e3fb1308aeb44a45ed32b74aabcf41013d0604
   languageName: node
   linkType: hard
 
@@ -6029,7 +6029,7 @@ __metadata:
   dependencies:
     "@rapidrest/cli": "npm:^1.0.1"
     "@rapidrest/core": "npm:^5.1.0"
-    "@rapidrest/react": "npm:^1.0.1"
+    "@rapidrest/react": "npm:^1.0.2"
     "@rapidrest/service-core": "npm:^1.4.0"
     "@swc/core": "npm:^1.16.1"
     "@tailwindcss/cli": "npm:^4.3.3"

@@ -39,7 +39,7 @@
   },
   "dependencies": {
     "@rapidrest/core": "^5.1.0",
-    "@rapidrest/react": "^1.0.1",
+    "@rapidrest/react": "^1.0.2",
     "@rapidrest/service-core": "^1.4.0",
     "@types/node": "^26.4.0",
     "axios": "^1.20.0",
