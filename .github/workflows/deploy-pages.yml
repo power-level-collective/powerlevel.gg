@@ -36,10 +36,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
-      # Same native runtime dependency the `test` job in ci.yml installs — `yarn export` boots a
-      # real server (same HTTP engine) to crawl it, not just a build step.
+      # libcurl4t64 is the same native runtime dependency the `test` job in ci.yml installs —
+      # `yarn export` boots a real server (same HTTP engine) to crawl it, not just a build step.
+      # build-essential is for redis-memory-server: no prebuilt Redis binary is published for
+      # this image, so it falls back to compiling Redis from source (`make`) at first use.
       - name: Install system dependencies
-        run: apt-get update && apt-get install -y libcurl4t64
+        run: apt-get update && apt-get install -y libcurl4t64 build-essential
 
       - name: Install dependencies
         run: export REDISMS_DISABLE_POSTINSTALL=true && yarn install --frozen-lockfile
