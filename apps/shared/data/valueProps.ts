@@ -6,7 +6,7 @@ export interface ValueProp {
 export const valueProps: ValueProp[] = [
     {
         title: "All-Veteran Roster",
-        body: "Every consultant on our roster has shipped multiple AAA titles start to finish — no juniors learning on your budget.",
+        body: "Every consultant on our roster has shipped multiple AAA titles start to finish. No juniors learning on your budget.",
     },
     {
         title: "Day-One Productivity",

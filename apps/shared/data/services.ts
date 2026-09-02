@@ -12,13 +12,13 @@ export interface ServiceOffering {
 export const services: ServiceOffering[] = [
     {
         id: "backend",
-        title: "Custom Backend Services",
+        title: "Custom Backend & Infrastructure",
         classTag: "Cloud Mage",
         icon: "cloud",
-        blurb: "We've built backend platforms again and again, across studios, publishers, and engines. Our founders have shipped a combined 12 backend platforms, including AcceleratXR, the award-winning Game Backend as a Service platform.",
+        blurb: "We've built backend platforms again and again, across studios, publishers, and engines. Our founders have shipped a combined 10 backend platforms and has expertise with all major Game-Backend-as-a-Service (GBaaS) providers.",
         bullets: [
             "Built by veterans of a dozen+ shipped backend platforms",
-            "Co-founded AcceleratXR, a full Game-Backend-as-a-Service platform",
+            "Co-founded AcceleratXR, the award-winning GBaaS",
             "Accounts, matchmaking, live-ops & infrastructure that scales",
         ],
         link: { href: "https://acceleratxr.com", label: "acceleratxr.com" },
@@ -28,7 +28,7 @@ export const services: ServiceOffering[] = [
         title: "Tools & Pipeline Engineering",
         classTag: "Party Buffs",
         icon: "wrench",
-        blurb: "Custom editor tooling, build pipelines, and workflow automation that make every other developer on your team faster — the force multiplier most studios never get around to building.",
+        blurb: "Custom editor tooling, build pipelines, and workflow automation that make every other developer on your team faster. We provide the force multiplier most studios never get around to building.",
         bullets: ["Editor & DCC tooling", "Build, asset & CI pipelines", "Workflow automation that pays for itself"],
     },
     {
@@ -36,7 +36,7 @@ export const services: ServiceOffering[] = [
         title: "Co-Development",
         classTag: "Squad Support",
         icon: "shield",
-        blurb: "Embed veteran developers directly into your existing team and pipeline to clear a milestone, ship a feature, or absorb overflow work — without the overhead of a new hire.",
+        blurb: "Embed veteran developers directly into your existing team and pipeline to clear a milestone, ship a feature, or absorb overflow work. Without the overhead of a new hire.",
         bullets: [
             "Drops into your existing engine & tools",
             "Scales up or down with your roadmap",
@@ -48,10 +48,10 @@ export const services: ServiceOffering[] = [
         title: "Full-Cycle Development",
         classTag: "Full Party",
         icon: "sword",
-        blurb: "Hand us the brief and we'll run production start to finish — prototype, production, and ship — led by people who have carried AAA titles across the finish line before.",
+        blurb: "Hand us the GDD and we'll run production start to finish. From prototype to production and ship. Led by people who have carried AAA titles across the finish line before.",
         bullets: [
             "End-to-end production ownership",
-            "Prototyping through certification & launch",
+            "Vertical slice through certification & launch",
             "Battle-tested pipeline & production discipline",
         ],
     },

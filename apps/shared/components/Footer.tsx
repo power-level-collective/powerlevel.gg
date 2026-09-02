@@ -17,8 +17,7 @@ export default function Footer() {
                     <div className="flex flex-col gap-3">
                         <img src="/img/wordmark_logo.svg" alt="Power Level Collective" className="h-10 w-auto" />
                         <p className="max-w-sm text-sm text-ink-muted">
-                            A strike team of veteran AAA developers offering co-development, full production, and
-                            tools &amp; pipeline engineering for game studios.
+                            A strike team of veteran AAA developers offering custom backend, tools and infrastructure, co-development, and full production for game studios.
                         </p>
                     </div>
 

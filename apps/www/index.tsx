@@ -30,9 +30,8 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                             Power Level Your Studio.
                         </h1>
                         <p className="max-w-2xl text-lg leading-relaxed text-ink-muted">
-                            Power Level Collective is a strike team of veteran AAA developers offering co-development,
-                            full-cycle development, and tools &amp; pipeline engineering — so your team ships faster,
-                            without sacrificing quality.
+                            Power Level Collective is a strike team of veteran AAA developers offering custom backend &amp; infrastructure,
+                            tools &amp; pipeline engineering, co-development, and full-cycle development.
                         </p>
                         <div className="mt-2 flex flex-col gap-4 sm:flex-row">
                             <a href="#contact" className="btn btn-primary">
@@ -137,7 +136,7 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                                 Ready to Power Level Your Studio?
                             </h2>
                             <p className="text-ink-muted">
-                                Tell us about your project, timeline, and team — we'll get back to you within 1
+                                Tell us about your project, timeline, and team. We'll get back to you within 1
                                 business day.
                             </p>
                             <ol className="mt-2 flex flex-col gap-4">
