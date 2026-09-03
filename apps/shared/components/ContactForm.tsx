@@ -53,7 +53,11 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
                 />
 
                 <div className="flex flex-col items-start justify-between gap-4 border-t border-border pt-5 sm:flex-row sm:items-center">
-                    <p className="text-xs text-ink-faint">We reach out within 1 business day to set up a call.</p>
+                    <p className="text-xs text-ink-faint">By entering your number or email address you agree to receive recurring automated
+                        marketing messages from Power Level Collective at the number or email provided. Consent is not a condition
+                        of purchase. Msg and data rates may apply. Reply STOP to opt out from texts, HELP for help. See our&nbsp;
+                        <a href="/privacy">privacy policy</a>.
+                    </p>
                     <button type="submit" id="contact-submit" className="btn btn-primary">
                         Get Started
                     </button>

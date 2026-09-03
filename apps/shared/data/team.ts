@@ -58,10 +58,12 @@ export interface TeamMember {
     hobbies: string[];
 }
 
-// `logo`/`icon` point at the same generated badge (a colored tile with a short label, matching
-// the MonogramAvatar treatment used elsewhere) — hand-authored rather than downloaded, so there's
-// no reliance on reproducing any platform holder's actual trademarked logo art. Swap in real
-// platform logos here whenever you have licensed ones to use instead.
+// `logo`/`icon` point at real brand marks where one is legitimately available: android, ios, mac,
+// linux, oculus, ps3/ps4/ps5, and steam come from simple-icons (CC0); windows and xb360/xbone/xbx
+// come from Font Awesome Free's brand icons (CC BY 4.0 — see the footer credit in Footer.tsx); web
+// is a hand-authored, unbranded globe glyph since "Web" isn't an actual product with a logo.
+// psvr/steamvr/switch/switch2 are still hand-drawn placeholder tiles — no real, legitimately
+// licensed mark could be sourced for these; swap in real assets here once available.
 export const PLATFORMS: Record<string, Platform> = {
     android: { name: "Android", icon: "/img/platforms/android.svg", logo: "/img/platforms/android.svg", showcase: true },
     ios: { name: "iOS", icon: "/img/platforms/ios.svg", logo: "/img/platforms/ios.svg", showcase: true },

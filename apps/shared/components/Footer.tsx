@@ -39,6 +39,29 @@ export default function Footer() {
                     <span>© {year} Power Level Collective. All rights reserved.</span>
                     <span>Power leveling the game industry, one milestone at a time.</span>
                 </div>
+
+                {/* Windows/Xbox platform icons are Font Awesome Free brand icons, CC BY 4.0 licensed. */}
+                <p className="text-xs text-ink-faint">
+                    Platform icons by{" "}
+                    <a
+                        href="https://fontawesome.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-gold hover:underline"
+                    >
+                        Font Awesome
+                    </a>
+                    , licensed under{" "}
+                    <a
+                        href="https://creativecommons.org/licenses/by/4.0/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-gold hover:underline"
+                    >
+                        CC BY 4.0
+                    </a>
+                    .
+                </p>
             </div>
         </footer>
     );
