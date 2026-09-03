@@ -7,7 +7,8 @@ import StatBar from "../shared/components/StatBar.js";
 import { CreditMarquee } from "../shared/components/CreditBadge.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
 import HeroLeadForm from "../shared/components/HeroLeadForm.js";
-import { StarIcon } from "../shared/icons/Icons.js";
+import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
+import { SCHEDULER_URL } from "../shared/data/links.js";
 import { services } from "../shared/data/services.js";
 import {
     rosterRoles,
@@ -41,11 +42,22 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                             Power Level Collective is a strike team of veteran AAA developers offering custom backend &amp; infrastructure,
                             tools &amp; pipeline engineering, co-development, and full-cycle development.
                         </p>
-                        <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
+                        <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto">
                             <HeroLeadForm status={contactSource === "hero" ? contactStatus : null} />
-                            <a href="#services" className="btn btn-secondary shrink-0">
-                                See What We Do
-                            </a>
+                            <div className="flex flex-col gap-4 sm:flex-row">
+                                <a
+                                    href={SCHEDULER_URL}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="btn btn-primary shrink-0"
+                                >
+                                    Book a Call
+                                    <ChevronIcon width={16} height={16} />
+                                </a>
+                                <a href="#services" className="btn btn-secondary shrink-0">
+                                    See What We Do
+                                </a>
+                            </div>
                         </div>
                         <p className="mt-4 text-sm font-medium text-ink-faint">
                             Every consultant on our roster has shipped multiple AAA titles.
