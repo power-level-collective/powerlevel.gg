@@ -1,5 +1,6 @@
 import React from "react";
 import { AlertIcon, CheckIcon } from "../icons/Icons.js";
+import { leadFormScript } from "./leadFormScript.js";
 
 export interface ContactStatus {
     type: "success" | "error";
@@ -65,51 +66,7 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
             </form>
 
             <script
-                dangerouslySetInnerHTML={{
-                    __html: `(function () {
-                        var form = document.getElementById("contact-form");
-                        if (!form) return;
-                        var submitBtn = document.getElementById("contact-submit");
-
-                        form.addEventListener("submit", function (event) {
-                            event.preventDefault();
-                            var data = Object.fromEntries(new FormData(form).entries());
-                            if (submitBtn) {
-                                submitBtn.disabled = true;
-                                submitBtn.textContent = "Sending…";
-                            }
-
-                            fetch(form.action, {
-                                method: "POST",
-                                headers: { "Content-Type": "application/json", Accept: "application/json" },
-                                body: JSON.stringify(data),
-                            })
-                                .then(function (res) {
-                                    return res.json().then(function (body) {
-                                        return { ok: res.ok, body: body };
-                                    });
-                                })
-                                .then(function (result) {
-                                    var url = new URL(window.location.href);
-                                    url.hash = "contact";
-                                    if (result.ok) {
-                                        url.searchParams.set("contact", "success");
-                                        url.searchParams.delete("message");
-                                    } else {
-                                        url.searchParams.set("contact", "error");
-                                        url.searchParams.set(
-                                            "message",
-                                            (result.body && result.body.message) || "Something went wrong."
-                                        );
-                                    }
-                                    window.location.href = url.toString();
-                                })
-                                .catch(function () {
-                                    form.submit();
-                                });
-                        });
-                    })();`,
-                }}
+                dangerouslySetInnerHTML={{ __html: leadFormScript("contact-form", "contact-submit", "footer", "contact") }}
             />
         </div>
     );

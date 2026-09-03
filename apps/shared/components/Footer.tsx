@@ -37,7 +37,12 @@ export default function Footer() {
 
                 <div className="flex flex-col gap-2 border-t border-border pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
                     <span>© {year} Power Level Collective. All rights reserved.</span>
-                    <span>Power leveling the game industry, one milestone at a time.</span>
+                    <div className="flex items-center gap-4">
+                        <a href="/privacy" className="hover:text-gold hover:underline">
+                            Privacy Policy
+                        </a>
+                        <span>Power leveling the game industry, one milestone at a time.</span>
+                    </div>
                 </div>
 
                 {/* Windows/Xbox platform icons are Font Awesome Free brand icons, CC BY 4.0 licensed. */}

@@ -6,7 +6,8 @@ import ServiceCard from "../shared/components/ServiceCard.js";
 import StatBar from "../shared/components/StatBar.js";
 import { CreditMarquee } from "../shared/components/CreditBadge.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
-import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
+import HeroLeadForm from "../shared/components/HeroLeadForm.js";
+import { StarIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
 import {
     rosterRoles,
@@ -19,9 +20,10 @@ import { valueProps, partyStats } from "../shared/data/valueProps.js";
 
 interface HomePageProps {
     contactStatus: ContactStatus | null;
+    contactSource: "hero" | "footer" | null;
 }
 
-export default function HomePage({ contactStatus }: HomePageProps) {
+export default function HomePage({ contactStatus, contactSource }: HomePageProps) {
     return (
         <div id="top" className="flex min-h-screen flex-col">
             <Header />
@@ -39,12 +41,9 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                             Power Level Collective is a strike team of veteran AAA developers offering custom backend &amp; infrastructure,
                             tools &amp; pipeline engineering, co-development, and full-cycle development.
                         </p>
-                        <div className="mt-2 flex flex-col gap-4 sm:flex-row">
-                            <a href="#contact" className="btn btn-primary">
-                                Start a Project
-                                <ChevronIcon width={16} height={16} />
-                            </a>
-                            <a href="#services" className="btn btn-secondary">
+                        <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto sm:flex-row">
+                            <HeroLeadForm status={contactSource === "hero" ? contactStatus : null} />
+                            <a href="#services" className="btn btn-secondary shrink-0">
                                 See What We Do
                             </a>
                         </div>
@@ -230,7 +229,7 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                             </ol>
                         </div>
 
-                        <ContactForm status={contactStatus} />
+                        <ContactForm status={contactSource === "footer" ? contactStatus : null} />
                     </div>
                 </section>
             </main>
@@ -243,12 +242,15 @@ export default function HomePage({ contactStatus }: HomePageProps) {
 export async function fetchProps(req: HttpRequest): Promise<HomePageProps> {
     const contactParam = Array.isArray(req.query?.contact) ? req.query.contact[0] : req.query?.contact;
     const messageParam = Array.isArray(req.query?.message) ? req.query.message[0] : req.query?.message;
+    const sourceParam = Array.isArray(req.query?.source) ? req.query.source[0] : req.query?.source;
+    // Older links (or a missing param) predate the hero form and always meant the footer form.
+    const contactSource = sourceParam === "hero" ? "hero" : "footer";
 
     if (contactParam === "success") {
-        return { contactStatus: { type: "success" } };
+        return { contactStatus: { type: "success" }, contactSource };
     }
     if (contactParam === "error") {
-        return { contactStatus: { type: "error", message: messageParam } };
+        return { contactStatus: { type: "error", message: messageParam }, contactSource };
     }
-    return { contactStatus: null };
+    return { contactStatus: null, contactSource: null };
 }
