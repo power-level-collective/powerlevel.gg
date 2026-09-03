@@ -213,14 +213,14 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                                 Ready to Power Level Your Studio?
                             </h2>
                             <p className="text-ink-muted">
-                                Tell us about your project, timeline, and team. We'll get back to you within 1
-                                business day.
+                                Leave your email or phone number and we'll reach out within 1 business day to book a
+                                call.
                             </p>
                             <ol className="mt-2 flex flex-col gap-4">
                                 {[
-                                    "We reply within 1 business day",
-                                    "A quick intro call to scope the work",
-                                    "A clear proposal — team, timeline, cost",
+                                    "Drop your email or phone below",
+                                    "We reach out within 1 business day",
+                                    "We book a call to scope the work",
                                 ].map((step, index) => (
                                     <li key={step} className="flex items-center gap-3 text-sm text-ink-muted">
                                         <span className="badge-level h-fit shrink-0 text-xs">{index + 1}</span>

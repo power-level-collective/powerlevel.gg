@@ -5,6 +5,7 @@ import MonogramAvatar from "./MonogramAvatar.js";
 import StatBar from "./StatBar.js";
 import { CreditGrid } from "./CreditBadge.js";
 import { ChevronIcon } from "../icons/Icons.js";
+import { SCHEDULER_URL } from "../data/links.js";
 import type { TeamMember } from "../data/team.js";
 
 export default function TeamMemberDetail({ member }: { member: TeamMember }) {
@@ -167,8 +168,13 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                             </h2>
                             <p className="mt-1 text-sm text-ink-muted">Tell us about your studio and timeline.</p>
                         </div>
-                        <a href="/#contact" className="btn btn-primary shrink-0">
-                            Get In Touch
+                        <a
+                            href={SCHEDULER_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-primary shrink-0"
+                        >
+                            Book a Call
                             <ChevronIcon width={16} height={16} />
                         </a>
                     </div>

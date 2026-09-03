@@ -1,18 +1,10 @@
 import React from "react";
 import { AlertIcon, CheckIcon } from "../icons/Icons.js";
-import { services } from "../data/services.js";
 
 export interface ContactStatus {
     type: "success" | "error";
     message?: string;
 }
-
-// Derived from `services` (rather than a hand-maintained parallel list) so a new or reordered
-// service offering can't silently drift out of sync with the options a visitor can pick from.
-const PROJECT_TYPES = [
-    ...services.map((service) => ({ value: service.id, label: service.title })),
-    { value: "not-sure", label: "Not Sure Yet" },
-];
 
 export default function ContactForm({ status }: { status?: ContactStatus | null }) {
     return (
@@ -20,7 +12,7 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
             {status?.type === "success" && (
                 <div className="panel-cut-sm flex items-start gap-3 bg-surface p-4 text-sm text-success">
                     <CheckIcon width={18} height={18} className="mt-0.5 shrink-0" />
-                    <span>Message received. We'll be in touch within 1 business day.</span>
+                    <span>Got it. We'll reach out within 1 business day to set up a call.</span>
                 </div>
             )}
             {status?.type === "error" && (
@@ -36,57 +28,17 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
                 method="POST"
                 className="panel-cut flex flex-col gap-5 p-7 sm:p-9"
             >
-                <div className="grid gap-5 sm:grid-cols-2">
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="name" className="field-label">
-                            Name
-                        </label>
-                        <input id="name" name="name" type="text" required className="field-input" placeholder="Jane Doe" />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="email" className="field-label">
-                            Email
-                        </label>
-                        <input
-                            id="email"
-                            name="email"
-                            type="email"
-                            required
-                            className="field-input"
-                            placeholder="jane@studio.com"
-                        />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="company" className="field-label">
-                            Studio / Company
-                        </label>
-                        <input id="company" name="company" type="text" className="field-input" placeholder="Optional" />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                        <label htmlFor="projectType" className="field-label">
-                            Project Type
-                        </label>
-                        <select id="projectType" name="projectType" className="field-input">
-                            {PROJECT_TYPES.map((option) => (
-                                <option key={option.value} value={option.value}>
-                                    {option.label}
-                                </option>
-                            ))}
-                        </select>
-                    </div>
-                </div>
-
                 <div className="flex flex-col gap-2">
-                    <label htmlFor="message" className="field-label">
-                        Message
+                    <label htmlFor="contact" className="field-label">
+                        Email or Phone
                     </label>
-                    <textarea
-                        id="message"
-                        name="message"
+                    <input
+                        id="contact"
+                        name="contact"
+                        type="text"
                         required
-                        rows={5}
-                        className="field-input resize-none"
-                        placeholder="Tell us about your project, timeline, and team."
+                        className="field-input"
+                        placeholder="jane@studio.com or (555) 123-4567"
                     />
                 </div>
 
@@ -101,9 +53,9 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
                 />
 
                 <div className="flex flex-col items-start justify-between gap-4 border-t border-border pt-5 sm:flex-row sm:items-center">
-                    <p className="text-xs text-ink-faint">We reply within 1 business day.</p>
+                    <p className="text-xs text-ink-faint">We reach out within 1 business day to set up a call.</p>
                     <button type="submit" id="contact-submit" className="btn btn-primary">
-                        Send Message
+                        Get Started
                     </button>
                 </div>
             </form>

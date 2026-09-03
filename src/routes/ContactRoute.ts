@@ -8,19 +8,30 @@ const { ApiRoute, Post, Request, Response } = RouteDecorators;
 const { Logger } = ObjectDecorators;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+// Loose phone check: strip everything but digits and require a plausible minimum length, so
+// visitors can type in whatever punctuation/format they're used to (dashes, parens, spaces, +country code).
+const PHONE_DIGITS_PATTERN = /^\d{7,15}$/;
 
 interface ContactSubmission {
-    name?: string;
-    email?: string;
-    company?: string;
-    projectType?: string;
-    message?: string;
+    /** Email address or phone number — visitors provide whichever they prefer to be reached at. */
+    contact?: string;
     /** Honeypot field. Real visitors never fill this in; only bots do. */
     website?: string;
 }
 
+function isEmail(value: string): boolean {
+    return EMAIL_PATTERN.test(value);
+}
+
+function isPhone(value: string): boolean {
+    return PHONE_DIGITS_PATTERN.test(value.replace(/[^\d]/g, ""));
+}
+
 /**
- * Handles marketing-site contact form submissions at `POST /api/contact`.
+ * Handles marketing-site lead capture submissions at `POST /api/contact`.
+ *
+ * Collects a single email-or-phone contact so we can follow up within 1 business day to book a
+ * call — the site's actual scheduling flow otherwise lives entirely on the external calendar tool.
  *
  * Supports two request shapes so the same handler serves both the no-JS form
  * fallback and the progressively-enhanced fetch() submission (see
@@ -42,22 +53,17 @@ export class ContactRoute {
             return this.respond(res, wantsJson, 200, "success");
         }
 
-        const name = submission.name?.trim();
-        const email = submission.email?.trim();
-        const message = submission.message?.trim();
+        const contact = submission.contact?.trim();
 
-        if (!name || !email || !message || !EMAIL_PATTERN.test(email)) {
-            return this.respond(res, wantsJson, 400, "error", "Please fill in your name, a valid email, and a message.");
+        if (!contact || !(isEmail(contact) || isPhone(contact))) {
+            return this.respond(res, wantsJson, 400, "error", "Please enter a valid email address or phone number.");
         }
 
         // `body` (not `message`) — winston merges this object's keys onto the log record, and a
         // `message` key here would silently overwrite winston's own top-level `message` field.
-        this.logger.info("[ContactRoute] New contact form submission", {
-            name,
-            email,
-            company: submission.company?.trim(),
-            projectType: submission.projectType,
-            body: message,
+        this.logger.info("[ContactRoute] New lead submission", {
+            contact,
+            method: isEmail(contact) ? "email" : "phone",
         });
 
         return this.respond(res, wantsJson, 200, "success");

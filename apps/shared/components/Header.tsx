@@ -1,5 +1,6 @@
 import React from "react";
 import { ChevronIcon, CloseIcon, MenuIcon, MoonIcon, SunIcon } from "../icons/Icons.js";
+import { SCHEDULER_URL } from "../data/links.js";
 
 const NAV_LINKS = [
     { href: "#services", label: "Services" },
@@ -39,8 +40,13 @@ export default function Header() {
                         </span>
                     </button>
 
-                    <a href="#contact" className="btn btn-primary hidden sm:inline-flex">
-                        Get In Touch
+                    <a
+                        href={SCHEDULER_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="btn btn-primary hidden sm:inline-flex"
+                    >
+                        Book a Call
                         <ChevronIcon width={16} height={16} />
                     </a>
 
@@ -68,8 +74,8 @@ export default function Header() {
                         {link.label}
                     </a>
                 ))}
-                <a href="#contact" className="btn btn-primary mt-2 w-full">
-                    Get In Touch
+                <a href={SCHEDULER_URL} target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-2 w-full">
+                    Book a Call
                 </a>
             </nav>
 
