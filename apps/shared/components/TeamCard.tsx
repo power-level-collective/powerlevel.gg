@@ -1,11 +1,15 @@
 import React from "react";
 import MonogramAvatar from "./MonogramAvatar.js";
 import StatBar from "./StatBar.js";
+import { ChevronIcon } from "../icons/Icons.js";
 import type { TeamMember } from "../data/team.js";
 
 export default function TeamCard({ member }: { member: TeamMember }) {
     return (
-        <div className="panel-cut flex h-full flex-col gap-5 p-6">
+        <a
+            href={`/team/${member.id}`}
+            className="panel-cut flex h-full flex-col gap-5 p-6 transition hover:[box-shadow:inset_0_0_0_1.5px_var(--color-gold)]"
+        >
             <div className="flex items-start gap-4">
                 <div className="w-20 shrink-0">
                     <MonogramAvatar name={member.name} />
@@ -39,6 +43,11 @@ export default function TeamCard({ member }: { member: TeamMember }) {
                     </span>
                 ))}
             </div>
-        </div>
+
+            <span className="mt-auto flex items-center gap-1 pt-1 text-sm font-bold text-gold">
+                View Profile
+                <ChevronIcon width={14} height={14} />
+            </span>
+        </a>
     );
 }

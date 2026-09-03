@@ -4,7 +4,7 @@ import { ChevronIcon, CloseIcon, MenuIcon, MoonIcon, SunIcon } from "../icons/Ic
 const NAV_LINKS = [
     { href: "#services", label: "Services" },
     { href: "#why-us", label: "Why Us" },
-    { href: "#team", label: "Team" },
+    { href: "#team", label: "Roster" },
     { href: "#contact", label: "Contact" },
 ];
 

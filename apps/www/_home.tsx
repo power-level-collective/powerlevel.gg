@@ -3,12 +3,12 @@ import type { HttpRequest } from "@rapidrest/service-core";
 import Header from "../shared/components/Header.js";
 import Footer from "../shared/components/Footer.js";
 import ServiceCard from "../shared/components/ServiceCard.js";
+import TeamCard from "../shared/components/TeamCard.js";
 import StatBar from "../shared/components/StatBar.js";
-import { CreditMarquee } from "../shared/components/CreditBadge.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
-import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
+import { ChevronIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
-import { rosterRoles, rosterSkills, rosterShippedTitles, rosterStudios } from "../shared/data/rosterSummary.js";
+import { team } from "../shared/data/team.js";
 import { valueProps, partyStats } from "../shared/data/valueProps.js";
 
 interface HomePageProps {
@@ -111,68 +111,20 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                 <section id="team" className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-14">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-                            <span className="eyebrow">The Collective</span>
+                            <span className="eyebrow">Meet the Party</span>
                             <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
-                                Party Composition
+                                Your AAA Strike Team
                             </h2>
                             <p className="text-ink-muted">
-                                The roles, skills, and shipped experience our roster brings to every engagement.
+                                Every member of the Collective has shipped multiple AAA titles start to finish.
                             </p>
                         </div>
-                        <div className="grid gap-6 md:grid-cols-2">
-                            <div className="panel-cut flex flex-col gap-5 p-7 sm:p-9">
-                                <span className="eyebrow">Roles Represented</span>
-                                <div className="flex flex-wrap gap-2">
-                                    {rosterRoles.map((role) => (
-                                        <span key={role} className="chip">
-                                            {role}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="panel-cut flex flex-col gap-5 p-7 sm:p-9">
-                                <span className="eyebrow">Skills &amp; Talents</span>
-                                <div className="flex flex-wrap gap-2">
-                                    {rosterSkills.map((skill) => (
-                                        <span key={skill} className="chip">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
+                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                            {team.map((member) => (
+                                <TeamCard key={member.id} member={member} />
+                            ))}
                         </div>
                     </div>
-                </section>
-
-                {/* ------------------------------------------------------ Shipped Titles */}
-                <section className="border-b border-border bg-surface py-12">
-                    <div className="container-plc mb-6">
-                        <span className="eyebrow">Shipped Titles</span>
-                    </div>
-                    <CreditMarquee credits={rosterShippedTitles} emptyLabel="Shipped titles coming soon." />
-                </section>
-
-                {/* Decorative divider between the two marquees — echoes the wordmark's gold-to-blue bar */}
-                <div className="border-b border-border bg-bg py-7">
-                    <div className="container-plc flex items-center gap-4">
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
-                        />
-                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
-                        />
-                    </div>
-                </div>
-
-                {/* ------------------------------------------------------- Former Studios */}
-                <section className="border-b border-border bg-surface py-12">
-                    <div className="container-plc mb-6">
-                        <span className="eyebrow">Former Studios &amp; Publishers</span>
-                    </div>
-                    <CreditMarquee credits={rosterStudios} emptyLabel="Studio history coming soon." />
                 </section>
 
                 {/* -------------------------------------------------------------- Contact */}

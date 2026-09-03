@@ -4,7 +4,7 @@ import { MailIcon } from "../icons/Icons.js";
 const NAV_LINKS = [
     { href: "#services", label: "Services" },
     { href: "#why-us", label: "Why Us" },
-    { href: "#team", label: "Team" },
+    { href: "#team", label: "Roster" },
     { href: "#contact", label: "Contact" },
 ];
 
