@@ -30,8 +30,8 @@ export default function PrivacyPage() {
                         This policy explains what information Power Level Collective ("we," "us," or "our") collects
                         when you visit powerlevel.gg, how we use it, and the choices available to you. If you have
                         questions, contact us at{" "}
-                        <a href="mailto:contact@powerlevel.gg" className="text-gold hover:underline">
-                            contact@powerlevel.gg
+                        <a href="mailto:hello@powerlevel.gg" className="text-gold hover:underline">
+                            hello@powerlevel.gg
                         </a>
                         .
                     </p>
@@ -120,8 +120,8 @@ export default function PrivacyPage() {
                             <li>Use the unsubscribe link in any marketing email; or</li>
                             <li>
                                 Email{" "}
-                                <a href="mailto:contact@powerlevel.gg" className="text-gold hover:underline">
-                                    contact@powerlevel.gg
+                                <a href="mailto:hello@powerlevel.gg" className="text-gold hover:underline">
+                                    hello@powerlevel.gg
                                 </a>{" "}
                                 to access, correct, or delete the personal information we hold about you.
                             </li>
@@ -151,8 +151,8 @@ export default function PrivacyPage() {
                     <Section title="11. Contact Us">
                         <p>
                             Questions about this policy or your information can be sent to{" "}
-                            <a href="mailto:contact@powerlevel.gg" className="text-gold hover:underline">
-                                contact@powerlevel.gg
+                            <a href="mailto:hello@powerlevel.gg" className="text-gold hover:underline">
+                                hello@powerlevel.gg
                             </a>
                             .
                         </p>

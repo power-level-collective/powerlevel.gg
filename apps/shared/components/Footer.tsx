@@ -29,9 +29,9 @@ export default function Footer() {
                         ))}
                     </nav>
 
-                    <a href="mailto:contact@powerlevel.gg" className="flex items-center gap-2 nav-link">
+                    <a href="mailto:hello@powerlevel.gg" className="flex items-center gap-2 nav-link">
                         <MailIcon width={16} height={16} />
-                        contact@powerlevel.gg
+                        hello@powerlevel.gg
                     </a>
                 </div>
 

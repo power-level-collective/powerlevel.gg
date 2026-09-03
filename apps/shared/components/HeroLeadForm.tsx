@@ -6,21 +6,21 @@ import type { ContactStatus } from "./ContactForm.js";
 export default function HeroLeadForm({ status }: { status?: ContactStatus | null }) {
     return (
         <div className="flex w-full flex-col gap-2 sm:w-auto">
+            <label htmlFor="hero-contact" className="field-label">
+                Share your email or phone. We'll reach out.
+            </label>
             <form
                 id="hero-contact-form"
                 action="/api/contact"
                 method="POST"
                 className="flex flex-col gap-3 sm:flex-row sm:items-center"
             >
-                <label htmlFor="hero-contact" className="sr-only">
-                    Email or Phone
-                </label>
                 <input
                     id="hero-contact"
                     name="contact"
                     type="text"
                     required
-                    className="field-input sm:w-64"
+                    className="field-input w-full sm:w-80"
                     placeholder="Email or phone number"
                 />
 
