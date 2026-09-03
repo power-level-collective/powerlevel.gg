@@ -3,6 +3,7 @@ import Header from "./Header.js";
 import Footer from "./Footer.js";
 import MonogramAvatar from "./MonogramAvatar.js";
 import StatBar from "./StatBar.js";
+import { CreditGrid } from "./CreditBadge.js";
 import { ChevronIcon } from "../icons/Icons.js";
 import type { TeamMember } from "../data/team.js";
 
@@ -71,22 +72,22 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                                     <div className="flex flex-col divide-y divide-border">
                                         {member.credits.map((credit) => (
                                             <div
-                                                key={credit.title.name}
+                                                key={credit.title}
                                                 className="flex flex-col gap-1 py-4 first:pt-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
                                             >
                                                 <div className="min-w-0">
                                                     <h3 className="font-display text-base font-bold text-ink">
-                                                        {credit.title.url ? (
+                                                        {credit.url ? (
                                                             <a
-                                                                href={credit.title.url}
+                                                                href={credit.url}
                                                                 target="_blank"
                                                                 rel="noopener noreferrer"
                                                                 className="hover:text-gold hover:underline"
                                                             >
-                                                                {credit.title.name}
+                                                                {credit.title}
                                                             </a>
                                                         ) : (
-                                                            credit.title.name
+                                                            credit.title
                                                         )}
                                                         {credit.year > 0 && (
                                                             <span className="ml-2 font-body text-sm font-normal text-ink-faint">
@@ -113,7 +114,9 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                                                             )}
                                                         </p>
                                                     )}
-                                                    {credit.platforms.length > 0 && <p>{credit.platforms.join(" · ")}</p>}
+                                                    {credit.platforms.length > 0 && (
+                                                        <p>{credit.platforms.map((p) => p.name).join(" · ")}</p>
+                                                    )}
                                                 </div>
                                             </div>
                                         ))}
@@ -121,6 +124,11 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                                 ) : (
                                     <p className="text-sm italic text-ink-faint">Credits coming soon.</p>
                                 )}
+                            </section>
+
+                            <section className="flex flex-col gap-4">
+                                <h2 className="font-display text-xl font-bold text-ink">Studios</h2>
+                                <CreditGrid credits={member.studios} emptyLabel="Studio history coming soon." />
                             </section>
 
                             <section className="flex flex-col gap-4">

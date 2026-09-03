@@ -8,7 +8,13 @@ import { CreditMarquee } from "../shared/components/CreditBadge.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
 import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
-import { rosterRoles, rosterSkills, rosterShippedTitles, rosterStudios } from "../shared/data/rosterSummary.js";
+import {
+    rosterRoles,
+    rosterSkills,
+    rosterShippedTitles,
+    rosterStudios,
+    rosterPlatforms,
+} from "../shared/data/rosterSummary.js";
 import { valueProps, partyStats } from "../shared/data/valueProps.js";
 
 interface HomePageProps {
@@ -170,9 +176,32 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                 {/* ------------------------------------------------------- Former Studios */}
                 <section className="border-b border-border bg-surface py-12">
                     <div className="container-plc mb-6">
-                        <span className="eyebrow">Former Studios &amp; Publishers</span>
+                        <span className="eyebrow">Former Studios</span>
                     </div>
                     <CreditMarquee credits={rosterStudios} emptyLabel="Studio history coming soon." />
+                </section>
+
+                {/* Decorative divider between the two marquees — echoes the wordmark's gold-to-blue bar */}
+                <div className="border-b border-border bg-bg py-7">
+                    <div className="container-plc flex items-center gap-4">
+                        <span
+                            className="h-px flex-1"
+                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
+                        />
+                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
+                        <span
+                            className="h-px flex-1"
+                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
+                        />
+                    </div>
+                </div>
+
+                {/* ----------------------------------------------------------- Platforms */}
+                <section className="border-b border-border bg-surface py-12">
+                    <div className="container-plc mb-6">
+                        <span className="eyebrow">Platforms</span>
+                    </div>
+                    <CreditMarquee credits={rosterPlatforms} emptyLabel="Platform list coming soon." />
                 </section>
 
                 {/* -------------------------------------------------------------- Contact */}

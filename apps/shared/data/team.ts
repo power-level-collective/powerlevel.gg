@@ -10,7 +10,29 @@ export interface TeamStat {
     value: number;
 }
 
-export interface Credit {
+export interface Platform {
+    name: string;
+    icon?: string;
+    logo?: string;
+    url?: string;
+    showcase?: boolean;
+}
+
+export interface GameCredit {
+    title: string;
+    /** Path to a real logo image. Omit to fall back to a stylized text badge. */
+    logo?: string;
+    platforms: Platform[];
+    studio: Studio;
+    role: string;
+    year: number;
+    /** Link to the title/studio's site. */
+    url?: string;
+    /** Set to `true` to display this credit on the home page showcase. */
+    showcase?: boolean;
+}
+
+export interface Studio {
     name: string;
     /** Path to a real logo image. Omit to fall back to a stylized text badge. */
     logo?: string;
@@ -18,14 +40,6 @@ export interface Credit {
     url?: string;
     /** Set to `true` to display this credit on the home page showcase. */
     showcase?: boolean;
-}
-
-export interface GameCredit {
-    title: Credit;
-    platforms: string[];
-    studio: Credit;
-    role: string;
-    year: number;
 }
 
 export interface TeamMember {
@@ -39,9 +53,64 @@ export interface TeamMember {
     longBio?: string[];
     stats: TeamStat[];
     skills: string[];
+    studios: Studio[];
     credits: GameCredit[];
     hobbies: string[];
 }
+
+// `logo`/`icon` point at the same generated badge (a colored tile with a short label, matching
+// the MonogramAvatar treatment used elsewhere) — hand-authored rather than downloaded, so there's
+// no reliance on reproducing any platform holder's actual trademarked logo art. Swap in real
+// platform logos here whenever you have licensed ones to use instead.
+export const PLATFORMS: Record<string, Platform> = {
+    android: { name: "Android", icon: "/img/platforms/android.svg", logo: "/img/platforms/android.svg", showcase: true },
+    ios: { name: "iOS", icon: "/img/platforms/ios.svg", logo: "/img/platforms/ios.svg", showcase: true },
+    linux: { name: "Linux", icon: "/img/platforms/linux.svg", logo: "/img/platforms/linux.svg" },
+    mac: { name: "MacOS", icon: "/img/platforms/mac.svg", logo: "/img/platforms/mac.svg" },
+    oculus: { name: "Oculus", icon: "/img/platforms/oculus.svg", logo: "/img/platforms/oculus.svg", showcase: true },
+    ps3: { name: "PlayStation 3", icon: "/img/platforms/ps3.svg", logo: "/img/platforms/ps3.svg", showcase: true },
+    ps4: { name: "PlayStation 4", icon: "/img/platforms/ps4.svg", logo: "/img/platforms/ps4.svg", showcase: true },
+    ps5: { name: "PlayStation 5", icon: "/img/platforms/ps5.svg", logo: "/img/platforms/ps5.svg" },
+    psvr: { name: "PlayStation VR", icon: "/img/platforms/psvr.svg", logo: "/img/platforms/psvr.svg", showcase: true },
+    xb360: { name: "Xbox 360", icon: "/img/platforms/xb360.svg", logo: "/img/platforms/xb360.svg", showcase: true },
+    xbone: { name: "Xbox One", icon: "/img/platforms/xbone.svg", logo: "/img/platforms/xbone.svg", showcase: true },
+    xbx: { name: "Xbox Series X", icon: "/img/platforms/xbx.svg", logo: "/img/platforms/xbx.svg" },
+    steam: { name: "SteamOS", icon: "/img/platforms/steam.svg", logo: "/img/platforms/steam.svg" },
+    steamvr: { name: "Steam VR", icon: "/img/platforms/steamvr.svg", logo: "/img/platforms/steamvr.svg", showcase: true },
+    switch: { name: "Switch", icon: "/img/platforms/switch.svg", logo: "/img/platforms/switch.svg" },
+    switch2: { name: "Switch 2", icon: "/img/platforms/switch2.svg", logo: "/img/platforms/switch2.svg" },
+    web: { name: "Web", icon: "/img/platforms/web.svg", logo: "/img/platforms/web.svg", showcase: true },
+    windows: { name: "Windows", icon: "/img/platforms/windows.svg", logo: "/img/platforms/windows.svg", showcase: true }
+};
+
+export const STUDIOS = {
+    adhesive: { name: "Adhesive Games" },
+    ember_lab: { name: "Ember Lab", url: "https://emberlab.com", showcase: true },
+    riot: { name: "Riot Games", url: "https://www.riotgames.com/", showcase: true },
+    spark: { name: "Spark Unlimited", showcase: true },
+    skydance: { name: "Skydance Interactive", url: "https://skydance.com/interactive", showcase: true },
+    superbit: { name: "Superbit Machine", showcase: true },
+    trilogy: { name: "Trilogy Studios", showcase: true },
+    workshop: { name: "The Workshop Entertainment" }
+};
+
+export const TITLES = {
+    apb_reloaded: { title: "APB: Reloaded", logo: "/img/logos/apb_reloaded.jfif", platforms: [PLATFORMS.ps4, PLATFORMS.xbone], studio: STUDIOS.workshop, year: 2015, url: "https://store.steampowered.com/app/113400/APB_Reloaded/", showcase: true },
+    armajet: { title: "Armajet", logo: "/img/logos/armajet.jpg", platforms: [PLATFORMS.android, PLATFORMS.ios, PLATFORMS.windows], studio: STUDIOS.superbit, year: 2019, url: "https://store.steampowered.com/app/895670/Armajet/", showcase: true },
+    archangel: { title: "Archangel", logo: "/img/logos/archangel.jpg", platforms: [PLATFORMS.oculus, PLATFORMS.psvr, PLATFORMS.steamvr], studio: STUDIOS.skydance, year: 2018, url: "https://skydance-media.fandom.com/wiki/Archangel", showcase: true },
+    crabs_and_penguins: { title: "Crabs & Penguins", platforms: [PLATFORMS.android, PLATFORMS.ios], studio: STUDIOS.ember_lab, year: 2012 },
+    day_at_the_beach: { title: "A Day at the Beach", platforms: [PLATFORMS.android, PLATFORMS.ios], studio: STUDIOS.trilogy, year: 2011 },
+    despicable_me: { title: "Despicable Me", platforms: [PLATFORMS.android, PLATFORMS.ios], studio: STUDIOS.trilogy, year: 2011 },
+    evil_within: { title: "The Evil Within", logo: "/img/logos/the_evil_within.jfif", platforms: [PLATFORMS.ps4, PLATFORMS.xbone, PLATFORMS.windows], studio: STUDIOS.workshop, year: 2014, url: "https://store.steampowered.com/app/268050/The_Evil_Within/", showcase: true },
+    harold: { title: "Harold and the Purple Crayon", platforms: [PLATFORMS.android, PLATFORMS.ios], studio: STUDIOS.trilogy, year: 2011 },
+    hawken: { title: "Hawken", logo: "/img/logos/hawken.jfif", platforms: [PLATFORMS.windows], studio: STUDIOS.adhesive, year: 2013, url: "https://www.playhawken.com", showcase: true },
+    kung_fu_panda_world: { title: "Kung Fu Panda World", logo: "/img/logos/kung_fu_panda_world.webp", platforms: [PLATFORMS.web], studio: STUDIOS.trilogy, year: 2010, url: "https://kungfupanda.fandom.com/wiki/Kung_Fu_Panda_World", showcase: true },
+    ladybug_girl: { title: "Ladybug Girl", platforms: [PLATFORMS.android, PLATFORMS.ios], studio: STUDIOS.trilogy, year: 2011 },
+    league_of_legends: { title: "League of Legends", logo: "/img/logos/league_of_legends.avif", platforms: [PLATFORMS.windows], studio: STUDIOS.riot, year: 2017, url: "https://www.leagueoflegends.com/", showcase: true },
+    lost_planet_3: { title: "Lost Planet 3", logo: "/img/logos/lost_planet_3.png", platforms: [PLATFORMS.ps3, PLATFORMS.xb360, PLATFORMS.windows], studio: STUDIOS.spark, role: "Senior Network Engineer", year: 2013, url: "https://store.steampowered.com/app/226720/LOST_PLANET_3/", showcase: true },
+    pwnd: { title: "PWND", logo: "/img/logos/pwnd.png", platforms: [PLATFORMS.windows], studio: STUDIOS.skydance, role: "Lead Engineer", year: 2017, url: "https://skydance-media.fandom.com/wiki/PWND", showcase: true },
+    xcom2: { title: "XCOM 2", logo: "/img/logos/xcom_2.jpg", platforms: [PLATFORMS.ps4, PLATFORMS.xbone], studio: STUDIOS.workshop, year: 2016, url: "https://store.steampowered.com/app/268500/XCOM_2/", showcase: true }
+};
 
 export const team: TeamMember[] = [
     {
@@ -59,21 +128,22 @@ export const team: TeamMember[] = [
             { label: "Engines", value: 85 },
         ],
         skills: ["AI", "CI/CD", "Databases", "Gameplay", "Game Engines", "Live Ops", "Netcode", "Performance", "Tools", "Unreal", "Unity"],
+        studios: [STUDIOS.superbit, STUDIOS.skydance, STUDIOS.workshop, STUDIOS.adhesive, STUDIOS.ember_lab, STUDIOS.spark, STUDIOS.trilogy],
         credits: [
-            { title: { name: "Armajet", url: "https://store.steampowered.com/app/895670/Armajet/", logo: "/img/logos/armajet.jpg", showcase: true }, platforms: ["Android", "iOS", "Windows"], studio: { name: "Superbit Machine", showcase: true }, role: "Technical Director", year: 2019 },
-            { title: { name: "Archangel", url: "https://skydance-media.fandom.com/wiki/Archangel", logo: "/img/logos/archangel.jpg", showcase: true }, platforms: ["Oculus", "PSVR"], studio: { name: "Skydance Interactive", url: "https://skydance.com/interactive", showcase: true }, role: "Lead Backend Engineer", year: 2018 },
-            { title: { name: "PWND", url: "https://skydance-media.fandom.com/wiki/PWND", logo: "/img/logos/pwnd.png", showcase: true }, platforms: ["Windows"], studio: { name: "Skydance Interactive", url: "https://skydance.com/interactive" }, role: "Lead Engineer", year: 2017 },
-            { title: { name: "XCOM 2", url: "https://store.steampowered.com/app/268500/XCOM_2/", logo: "/img/logos/xcom_2.jpg", showcase: true }, platforms: ["PlayStation 4", "Xbox One"], studio: { name: "The Workshop Entertainment" }, role: "Senior Engineer", year: 2016 },
-            { title: { name: "APB: Reloaded", url: "https://store.steampowered.com/app/113400/APB_Reloaded/", logo: "/img/logos/apb_reloaded.jfif", showcase: true }, platforms: ["PlayStation 4", "Xbox One"], studio: { name: "The Workshop Entertainment" }, role: "Senior Engineer", year: 2015 },
-            { title: { name: "The Evil Within", url: "https://store.steampowered.com/app/268050/The_Evil_Within/", logo: "/img/logos/the_evil_within.jfif", showcase: true }, platforms: ["PlayStation 4", "Xbox One", "Windows"], studio: { name: "The Workshop Entertainment" }, role: "Senior Engineer", year: 2014 },
-            { title: { name: "Hawken", url: "https://www.playhawken.com", logo: "/img/logos/hawken.jfif", showcase: true }, platforms: ["Windows"], studio: { name: "Adhesive Games" }, role: "Senior Network Engineer", year: 2013 },
-            { title: { name: "Lost Planet 3", url: "https://store.steampowered.com/app/226720/LOST_PLANET_3/", logo: "/img/logos/lost_planet_3.png", showcase: true }, platforms: ["PlayStation 3", "Xbox 360", "Windows"], studio: { name: "Spark Unlimited", showcase: true }, role: "Senior Network Engineer", year: 2013 },
-            { title: { name: "Crabs & Penguins" }, platforms: ["Android", "iOS"], studio: { name: "Ember Lab", url: "https://emberlab.com", showcase: true }, role: "Lead Engineer", year: 2012 },
-            { title: { name: "A Day at the Beach" }, platforms: ["Android", "iOS"], studio: { name: "Trilogy Studios" }, role: "Lead Engineer", year: 2011 },
-            { title: { name: "Despicable Me" }, platforms: ["Android", "iOS"], studio: { name: "Trilogy Studios" }, role: "Lead Engineer", year: 2011 },
-            { title: { name: "Ladybug Girl" }, platforms: ["Android", "iOS"], studio: { name: "Trilogy Studios" }, role: "Lead Engineer", year: 2011 },
-            { title: { name: "Harold and the Purple Crayon" }, platforms: ["Android", "iOS"], studio: { name: "Trilogy Studios" }, role: "Lead Engineer", year: 2011 },
-            { title: { name: "Kung Fu Panda World", url: "https://kungfupanda.fandom.com/wiki/Kung_Fu_Panda_World", logo: "/img/logos/kung_fu_panda_world.webp", showcase: true }, platforms: ["Web"], studio: { name: "Trilogy Studios", showcase: true }, role: "Lead Engineer", year: 2010 },
+            { ...TITLES.armajet, role: "Technical Director" },
+            { ...TITLES.archangel, role: "Lead Backend Engineer" },
+            { ...TITLES.pwnd, role: "Lead Engineer" },
+            { ...TITLES.xcom2, role: "Senior Engineer" },
+            { ...TITLES.apb_reloaded, role: "Senior Engineer" },
+            { ...TITLES.evil_within, role: "Senior Engineer" },
+            { ...TITLES.hawken, role: "Senior Network Engineer" },
+            { ...TITLES.lost_planet_3, role: "Senior Network Engineer" },
+            { ...TITLES.crabs_and_penguins, role: "Lead Engineer" },
+            { ...TITLES.day_at_the_beach, role: "Lead Engineer" },
+            { ...TITLES.despicable_me, role: "Lead Engineer" },
+            { ...TITLES.ladybug_girl, role: "Lead Engineer" },
+            { ...TITLES.harold, role: "Lead Engineer" },
+            { ...TITLES.kung_fu_panda_world, role: "Lead Engineer" },
         ],
         hobbies: ["carpentry", "music", "racing", "robotics", "skateboarding", "snowboarding", "surfing"],
     },
@@ -91,6 +161,7 @@ export const team: TeamMember[] = [
             { label: "Tooling", value: 84 },
         ],
         skills: ["C++", "Unreal", "Unity", "Netcode"],
+        studios: [STUDIOS.skydance],
         credits: [],
         hobbies: [],
     },
@@ -108,7 +179,15 @@ export const team: TeamMember[] = [
             { label: "Mentorship", value: 90 },
         ],
         skills: ["Art Direction", "Pipeline", "Substance", "UE5"],
-        credits: [],
+        studios: [STUDIOS.skydance, STUDIOS.riot, STUDIOS.trilogy],
+        credits: [
+            { ...TITLES.pwnd, role: "Senior Engineer" },
+            { ...TITLES.league_of_legends, role: "Senior Engineer" },
+            { ...TITLES.despicable_me, role: "Engineer" },
+            { ...TITLES.ladybug_girl, role: "Engineer" },
+            { ...TITLES.harold, role: "Engineer" },
+            { ...TITLES.kung_fu_panda_world, role: "Engineer" },
+        ],
         hobbies: [],
     },
     {
@@ -126,7 +205,10 @@ export const team: TeamMember[] = [
             { label: "Agile / SCRUM", value: 86 },
         ],
         skills: [],
-        credits: [],
+        studios: [STUDIOS.riot],
+        credits: [
+            { ...TITLES.league_of_legends, role: "Producer" },
+        ],
         hobbies: [],
     }
 ];

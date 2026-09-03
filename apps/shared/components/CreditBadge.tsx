@@ -1,7 +1,7 @@
 import React from "react";
-import type { Credit } from "../data/team.js";
+import type { Studio } from "../data/team.js";
 
-export function CreditBadge({ credit }: { credit: Credit }) {
+export function CreditBadge({ credit }: { credit: Studio }) {
     const Wrapper = credit.url ? "a" : "div";
     const wrapperProps = credit.url ? { href: credit.url, target: "_blank", rel: "noopener noreferrer" } : {};
 
@@ -9,9 +9,14 @@ export function CreditBadge({ credit }: { credit: Credit }) {
         return (
             <Wrapper
                 {...wrapperProps}
-                className="panel-cut-sm flex min-h-24 items-center justify-center bg-surface-2 px-6 py-4 transition hover:bg-surface"
+                className="panel-cut-sm group relative flex min-h-24 items-center justify-center bg-surface-2 px-6 py-4 transition hover:bg-surface"
             >
                 <img src={credit.logo} alt={credit.name} className="max-h-16 max-w-full object-contain" />
+                <span className="absolute inset-0 flex items-center justify-center bg-bg/90 px-3 text-center opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100">
+                    <span className="font-display text-sm font-bold uppercase tracking-wide text-ink">
+                        {credit.name}
+                    </span>
+                </span>
             </Wrapper>
         );
     }
@@ -25,7 +30,7 @@ export function CreditBadge({ credit }: { credit: Credit }) {
     );
 }
 
-export function CreditGrid({ credits, emptyLabel }: { credits: Credit[]; emptyLabel: string }) {
+export function CreditGrid({ credits, emptyLabel }: { credits: Studio[]; emptyLabel: string }) {
     if (credits.length === 0) {
         return <p className="text-sm italic text-ink-faint">{emptyLabel}</p>;
     }
@@ -46,7 +51,7 @@ export function CreditGrid({ credits, emptyLabel }: { credits: Credit[]; emptyLa
  * seamlessly: the list is rendered twice back-to-back and the track animates exactly -50% of its
  * own width, so the second copy lines up perfectly with where the first one started.
  */
-export function CreditMarquee({ credits, emptyLabel }: { credits: Credit[]; emptyLabel: string }) {
+export function CreditMarquee({ credits, emptyLabel }: { credits: Studio[]; emptyLabel: string }) {
     if (credits.length === 0) {
         return <p className="container-plc text-sm italic text-ink-faint">{emptyLabel}</p>;
     }
