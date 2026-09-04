@@ -89,7 +89,7 @@ export const ENGINES: Record<string, Engine> = {
     ue3: { name: "Unreal Engine 3", icon: "/img/engines/unreal.svg", logo: "/img/engines/unreal.svg", url: "https://www.unrealengine.com" },
     ue4: { name: "Unreal Engine 4", icon: "/img/engines/unreal.svg", logo: "/img/engines/unreal.svg", url: "https://www.unrealengine.com" },
     unity: { name: "Unity", icon: "/img/engines/unity.svg", logo: "/img/engines/unity.svg", url: "https://unity.com", showcase: true },
-    godot: { name: "Godot", icon: "/img/engines/godot.svg", logo: "/img/engines/godot.svg", url: "https://godotengine.org" },
+    godot: { name: "Godot", icon: "/img/engines/godot.svg", logo: "/img/engines/godot.svg", url: "https://godotengine.org", showcase: true },
     cryengine: { name: "CryEngine", icon: "/img/engines/cryengine.svg", logo: "/img/engines/cryengine.svg", url: "https://www.cryengine.com", showcase: true },
     // Adapted from id Software's real id Tech 8 press logo with the "8" edited to a "5" to match
     // the actual engine version — no official id Tech 5-specific mark exists to source instead.
@@ -139,7 +139,7 @@ export const team: TeamMember[] = [
         title: "Director of Engineering",
         classTag: "Code Warrior",
         level: 20,
-        bio: "20+ years of industry experience and over 13 shipped titles across console, mobile, PC & web. An expert in all things multi-player and online services. JP is a true leader that thrives on pushing the limits of advancing game technology.",
+        bio: "20+ years of industry experience and 14 shipped titles across console, mobile, PC & web. An expert in all things multi-player and online services. JP is a true leader that thrives on pushing the limits of advancing game technology.",
         stats: [
             { label: "Leadership", value: 88 },
             { label: "Engineering", value: 95 },
