@@ -7,7 +7,7 @@ import type { TeamMember } from "../data/team.js";
 export default function TeamCard({ member }: { member: TeamMember }) {
     return (
         <a
-            href={`/team/${member.id}`}
+            href={`/__team/${member.id}`}
             className="panel-cut flex h-full flex-col gap-5 p-6 transition hover:[box-shadow:inset_0_0_0_1.5px_var(--color-gold)]"
         >
             <div className="flex items-start gap-4">
