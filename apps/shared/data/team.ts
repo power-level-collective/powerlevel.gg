@@ -100,15 +100,18 @@ export const ENGINES: Record<string, Engine> = {
     proprietary: { name: "Proprietary Engine", icon: "/img/engines/proprietary.svg", logo: "/img/engines/proprietary.svg" },
 };
 
+// `logo`: riot is Riot Games' real mark from simple-icons (CC0). spark/trilogy use existing local
+// assets. ember_lab/superbit have no logo available yet; skydance's only local asset is a
+// cinematic title-card frame, not a clean mark, so it's left as a text fallback rather than used.
 export const STUDIOS = {
     adhesive: { name: "Adhesive Games" },
-    ember_lab: { name: "Ember Lab", url: "https://emberlab.com", showcase: true },
-    riot: { name: "Riot Games", url: "https://www.riotgames.com/", showcase: true },
-    spark: { name: "Spark Unlimited", showcase: true },
-    skydance: { name: "Skydance Interactive", url: "https://skydance.com/interactive", showcase: true },
-    superbit: { name: "Superbit Machine", showcase: true },
-    trilogy: { name: "Trilogy Studios", showcase: true },
-    workshop: { name: "The Workshop Entertainment" }
+    ember_lab: { name: "Ember Lab", logo: "/img/logos/ember_lab.webp", url: "https://emberlab.com", showcase: true },
+    riot: { name: "Riot Games", logo: "/img/logos/riot_games.png", url: "https://www.riotgames.com/", showcase: true },
+    spark: { name: "Spark Unlimited", logo: "/img/logos/spark_unlimited.png", showcase: true },
+    skydance: { name: "Skydance Interactive", logo: "/img/logos/skydance_interactive.jpg", url: "https://skydance.com/interactive", showcase: true },
+    superbit: { name: "Superbit Machine", logo: "/img/logos/superbit_machine.jpg", showcase: true },
+    trilogy: { name: "Trilogy Studios", logo: "/img/logos/trilogy_studios.jpg", showcase: true },
+    workshop: { name: "The Workshop Entertainment", logo: "/img/logos/the_workshop.jfif" }
 };
 
 export const TITLES = {

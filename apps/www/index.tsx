@@ -4,7 +4,7 @@ import Header from "../shared/components/Header.js";
 import Footer from "../shared/components/Footer.js";
 import ServiceCard from "../shared/components/ServiceCard.js";
 import StatBar from "../shared/components/StatBar.js";
-import { CreditMarquee } from "../shared/components/CreditBadge.js";
+import { CreditBadge, CreditMarquee, IconBadge } from "../shared/components/CreditBadge.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
 import HeroLeadForm from "../shared/components/HeroLeadForm.js";
 import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
@@ -32,7 +32,6 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
             <Header />
 
             <main className="flex flex-1 flex-col">
-                {/* ---------------------------------------------------------------- Hero */}
                 <section className="relative overflow-hidden border-b border-border py-24 sm:py-32">
                     <div className="hud-grid pointer-events-none absolute inset-0" aria-hidden="true" />
                     <div className="container-plc relative flex flex-col items-center gap-6 text-center">
@@ -67,7 +66,6 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                     </div>
                 </section>
 
-                {/* ------------------------------------------------------------- Services */}
                 <section id="services" className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-14">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
@@ -85,7 +83,6 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                     </div>
                 </section>
 
-                {/* -------------------------------------------------------------- Why Us */}
                 <section id="why-us" className="border-b border-border py-24">
                     <div className="container-plc grid gap-14 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                         <div className="flex flex-col gap-10">
@@ -126,7 +123,20 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                     </div>
                 </section>
 
-                {/* ----------------------------------------------------------------- Team */}
+                <div className="border-b border-border bg-bg py-7">
+                    <div className="container-plc flex items-center gap-4">
+                        <span
+                            className="h-px flex-1"
+                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
+                        />
+                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
+                        <span
+                            className="h-px flex-1"
+                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
+                        />
+                    </div>
+                </div>
+
                 <section id="team" className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-14">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
@@ -163,84 +173,66 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                     </div>
                 </section>
 
-                {/* ------------------------------------------------------ Shipped Titles */}
-                <section className="border-b border-border bg-surface py-12">
-                    <div className="container-plc mb-6">
-                        <span className="eyebrow">Shipped Titles</span>
+                <section className="border-b border-border py-24">
+                    <div className="container-plc flex flex-col gap-10">
+                        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+                            <span className="eyebrow">Shipped Titles</span>
+                            <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
+                                Proof, Not Promises
+                            </h2>
+                            <p className="text-ink-muted">A track record built one shipped title at a time.</p>
+                        </div>
+                        {rosterShippedTitles.length > 0 ? (
+                            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
+                                {rosterShippedTitles.map((title) => (
+                                    <CreditBadge key={title.name} credit={title} size="lg" />
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm italic text-ink-faint">Shipped titles coming soon.</p>
+                        )}
                     </div>
-                    <CreditMarquee credits={rosterShippedTitles} emptyLabel="Shipped titles coming soon." />
                 </section>
 
-                {/* Decorative divider between the two marquees — echoes the wordmark's gold-to-blue bar */}
-                <div className="border-b border-border bg-bg py-7">
-                    <div className="container-plc flex items-center gap-4">
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
-                        />
-                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
-                        />
+                <section className="border-b border-border py-24">
+                    <div className="container-plc flex flex-col gap-10">
+                        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
+                            <span className="eyebrow">Masters of Game Technology</span>
+                            <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
+                                Every Platform. Every Engine.
+                            </h2>
+                            <p className="text-ink-muted">
+                                From console to mobile, PC, and VR. We've worked with nearly every engine and platform.
+                            </p>
+                        </div>
+                        <div className="panel-cut flex flex-col gap-8 p-7 sm:p-9">
+                            <div className="flex flex-col gap-4">
+                                <span className="eyebrow">Platforms</span>
+                                <div className="flex flex-wrap gap-3">
+                                    {rosterPlatforms.map((platform) => (
+                                        <IconBadge key={platform.name} item={platform} size="lg" />
+                                    ))}
+                                </div>
+                            </div>
+                            <div className="flex flex-col gap-4 border-t border-border pt-8">
+                                <span className="eyebrow">Engines</span>
+                                <div className="flex flex-wrap gap-3">
+                                    {rosterEngines.map((engine) => (
+                                        <IconBadge key={engine.name} item={engine} size="lg" />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                </section>
 
-                {/* ------------------------------------------------------- Former Studios */}
                 <section className="border-b border-border bg-surface py-12">
                     <div className="container-plc mb-6">
-                        <span className="eyebrow">Former Studios</span>
+                        <span className="eyebrow">Studio Pedigree</span>
                     </div>
                     <CreditMarquee credits={rosterStudios} emptyLabel="Studio history coming soon." />
                 </section>
 
-                {/* Decorative divider between the two marquees — echoes the wordmark's gold-to-blue bar */}
-                <div className="border-b border-border bg-bg py-7">
-                    <div className="container-plc flex items-center gap-4">
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
-                        />
-                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
-                        />
-                    </div>
-                </div>
-
-                {/* ----------------------------------------------------------- Platforms */}
-                <section className="border-b border-border bg-surface py-12">
-                    <div className="container-plc mb-6">
-                        <span className="eyebrow">Platforms</span>
-                    </div>
-                    <CreditMarquee credits={rosterPlatforms} emptyLabel="Platform list coming soon." />
-                </section>
-
-                {/* Decorative divider between the two marquees — echoes the wordmark's gold-to-blue bar */}
-                <div className="border-b border-border bg-bg py-7">
-                    <div className="container-plc flex items-center gap-4">
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, transparent, var(--color-gold))" }}
-                        />
-                        <StarIcon width={14} height={14} className="shrink-0 text-gold" />
-                        <span
-                            className="h-px flex-1"
-                            style={{ background: "linear-gradient(90deg, var(--color-blue-deep), transparent)" }}
-                        />
-                    </div>
-                </div>
-
-                {/* ------------------------------------------------------------- Engines */}
-                <section className="border-b border-border bg-surface py-12">
-                    <div className="container-plc mb-6">
-                        <span className="eyebrow">Engines</span>
-                    </div>
-                    <CreditMarquee credits={rosterEngines} emptyLabel="Engine list coming soon." />
-                </section>
-
-                {/* -------------------------------------------------------------- Contact */}
                 <section id="contact" className="py-24">
                     <div className="container-plc grid gap-14 lg:grid-cols-[0.85fr_1.15fr] lg:items-start">
                         <div className="flex flex-col gap-6">
