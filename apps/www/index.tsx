@@ -131,42 +131,6 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <section id="team" className="border-b border-border py-24">
-                    <div className="container-plc flex flex-col gap-14">
-                        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-                            <span className="eyebrow">The Collective</span>
-                            <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
-                                Party Composition
-                            </h2>
-                            <p className="text-ink-muted">
-                                The roles, skills, and shipped experience our roster brings to every engagement.
-                            </p>
-                        </div>
-                        <div className="grid gap-6 md:grid-cols-2">
-                            <div className="panel-cut flex flex-col gap-5 p-7 sm:p-9">
-                                <span className="eyebrow">Roles Represented</span>
-                                <div className="flex flex-wrap gap-2">
-                                    {rosterRoles.map((role) => (
-                                        <span key={role} className="chip">
-                                            {role}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                            <div className="panel-cut flex flex-col gap-5 p-7 sm:p-9">
-                                <span className="eyebrow">Skills &amp; Talents</span>
-                                <div className="flex flex-wrap gap-2">
-                                    {rosterSkills.map((skill) => (
-                                        <span key={skill} className="chip">
-                                            {skill}
-                                        </span>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-
                 <section className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-10">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
@@ -191,7 +155,7 @@ export default function HomePage() {
                 <section className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-10">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-                            <span className="eyebrow">Masters of Game Technology</span>
+                            <span className="eyebrow">Game Technology Masters</span>
                             <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
                                 Every Platform. Every Engine.
                             </h2>

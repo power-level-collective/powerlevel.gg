@@ -1,4 +1,7 @@
-import { team, PLATFORMS, ENGINES, type Studio, type Platform, type Engine } from "./team.js";
+import { Engine, ENGINES } from "./engines.js";
+import { Platform, PLATFORMS } from "./platforms.js";
+import { Studio } from "./studios.js";
+import { team } from "./team.js";
 
 // Anonymized, aggregated view of the roster for public-facing display — no names, bios, avatars,
 // or links back to any individual. Dedupes across every member. Roles/skills preserve
