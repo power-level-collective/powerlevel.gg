@@ -131,7 +131,7 @@ export default function HomePage() {
                     </div>
                 </div>
 
-                <section className="border-b border-border py-24">
+                <section id="team" className="border-b border-border py-24">
                     <div className="container-plc flex flex-col gap-10">
                         <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
                             <span className="eyebrow">Shipped Titles</span>
