@@ -18,10 +18,10 @@ export const services: ServiceOffering[] = [
         blurb: "We've built backend platforms again and again, across studios, publishers, and engines. Our founders have shipped a combined 10 backend platforms and has expertise with all major Game-Backend-as-a-Service (GBaaS) providers.",
         bullets: [
             "Built by veterans of a dozen+ shipped backend platforms",
-            "Co-founded AcceleratXR, the award-winning GBaaS",
             "Accounts, matchmaking, live-ops & infrastructure that scales",
+            "Integrated with GBaaS providers so time and capital aren't wasted",
         ],
-        link: { href: "https://acceleratxr.com", label: "acceleratxr.com" },
+        // link: { href: "https://acceleratxr.com", label: "acceleratxr.com" },
     },
     {
         id: "tools",

@@ -13,6 +13,10 @@ export const valueProps: ValueProp[] = [
         body: "We embed directly in your existing tools and pipeline, so we're contributing inside your first sprint, not your third.",
     },
     {
+        title: "AI-Augmented Development",
+        body: "Our veteran engineers pair with modern AI tooling throughout the pipeline, dramatically improving productivity without cutting corners on AAA-grade quality.",
+    },
+    {
         title: "Flexible Engagement",
         body: "Scale the team up for a crunch or down between milestones. You pay for capacity, not a bench.",
     },
@@ -26,17 +30,3 @@ export const valueProps: ValueProp[] = [
     },
 ];
 
-export interface PartyStat {
-    label: string;
-    /** The real number shown at the end of the bar. */
-    value: string;
-    /** Decorative bar-fill percentage (0-100) — a stylized brand device, not a literal ratio. */
-    fill: number;
-}
-
-export const partyStats: PartyStat[] = [
-    { label: "Years Experience", value: "50", fill: 95 },
-    { label: "Shipped Titles", value: "24", fill: 85 },
-    { label: "Game Engines", value: "10", fill: 78 },
-    { label: "Platforms", value: "12", fill: 82 },
-];
