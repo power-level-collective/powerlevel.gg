@@ -1,20 +1,14 @@
 import React from "react";
 import { AlertIcon, CheckIcon, ChevronIcon } from "../icons/Icons.js";
 import { leadFormScript } from "./leadFormScript.js";
-import type { ContactStatus } from "./ContactForm.js";
 
-export default function HeroLeadForm({ status }: { status?: ContactStatus | null }) {
+export default function HeroLeadForm() {
     return (
         <div className="flex w-full flex-col gap-2 sm:w-[28rem]">
             <label htmlFor="hero-contact" className="field-label">
                 Share your email or phone. We'll reach out.
             </label>
-            <form
-                id="hero-contact-form"
-                action="/api/contact"
-                method="POST"
-                className="flex flex-col gap-3 sm:flex-row sm:items-center"
-            >
+            <form id="hero-contact-form" className="flex flex-col gap-3 sm:flex-row sm:items-center">
                 <input
                     id="hero-contact"
                     name="contact"
@@ -34,7 +28,7 @@ export default function HeroLeadForm({ status }: { status?: ContactStatus | null
                     aria-hidden="true"
                 />
 
-                <button type="submit" id="hero-contact-submit" className="btn btn-primary shrink-0">
+                <button type="submit" id="hero-contact-submit" className="btn btn-primary shrink-0 transition-opacity">
                     Get Started
                     <ChevronIcon width={16} height={16} />
                 </button>
@@ -50,21 +44,25 @@ export default function HeroLeadForm({ status }: { status?: ContactStatus | null
                 .
             </p>
 
-            {status?.type === "success" && (
-                <div className="flex items-center gap-2 text-sm text-success">
-                    <CheckIcon width={16} height={16} className="shrink-0" />
-                    <span>Got it. We'll reach out within 1 business day.</span>
-                </div>
-            )}
-            {status?.type === "error" && (
-                <div className="flex items-center gap-2 text-sm text-danger">
-                    <AlertIcon width={16} height={16} className="shrink-0" />
-                    <span>{status.message || "Something went wrong. Please try again."}</span>
-                </div>
-            )}
+            <div id="hero-contact-success" hidden className="flex items-center gap-2 text-sm text-success">
+                <CheckIcon width={16} height={16} className="shrink-0" />
+                <span>Got it. We'll reach out within 1 business day.</span>
+            </div>
+            <div id="hero-contact-error" hidden className="flex items-center gap-2 text-sm text-danger">
+                <AlertIcon width={16} height={16} className="shrink-0" />
+                <span id="hero-contact-error-message">Something went wrong. Please try again.</span>
+            </div>
 
             <script
-                dangerouslySetInnerHTML={{ __html: leadFormScript("hero-contact-form", "hero-contact-submit", "hero", "top") }}
+                dangerouslySetInnerHTML={{
+                    __html: leadFormScript(
+                        "hero-contact-form",
+                        "hero-contact-submit",
+                        "hero-contact-success",
+                        "hero-contact-error",
+                        "hero-contact-error-message"
+                    ),
+                }}
             />
         </div>
     );

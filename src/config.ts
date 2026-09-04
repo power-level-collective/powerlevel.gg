@@ -16,6 +16,12 @@ const conf = nconf
     .env({
         separator: "__",
         parseValues: true,
+        // Without this, nconf keeps env var names in their original (conventionally uppercase)
+        // case, so e.g. AUTH__SECRET is stored under "AUTH:SECRET" — a different key than the
+        // lowercase "auth:secret" every default/config.get() call in this codebase uses — and
+        // silently fails to override it instead of erroring, since nconf key lookups are
+        // case-sensitive.
+        lowerCase: true,
     });
 
 conf.defaults({

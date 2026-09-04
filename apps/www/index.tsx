@@ -1,11 +1,10 @@
 import React from "react";
-import type { HttpRequest } from "@rapidrest/service-core";
 import Header from "../shared/components/Header.js";
 import Footer from "../shared/components/Footer.js";
 import ServiceCard from "../shared/components/ServiceCard.js";
 import StatBar from "../shared/components/StatBar.js";
 import { CreditBadge, CreditMarquee, IconBadge } from "../shared/components/CreditBadge.js";
-import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
+import ContactForm from "../shared/components/ContactForm.js";
 import HeroLeadForm from "../shared/components/HeroLeadForm.js";
 import { ChevronIcon, StarIcon } from "../shared/icons/Icons.js";
 import { SCHEDULER_URL } from "../shared/data/links.js";
@@ -21,12 +20,7 @@ import {
 } from "../shared/data/rosterSummary.js";
 import { valueProps } from "../shared/data/valueProps.js";
 
-interface HomePageProps {
-    contactStatus: ContactStatus | null;
-    contactSource: "hero" | "footer" | null;
-}
-
-export default function HomePage({ contactStatus, contactSource }: HomePageProps) {
+export default function HomePage() {
     return (
         <div id="top" className="flex min-h-screen flex-col">
             <Header />
@@ -44,7 +38,7 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                             tools &amp; pipeline engineering, co-development, and full-cycle development.
                         </p>
                         <div className="mt-2 flex w-full flex-col items-center gap-4 sm:w-auto">
-                            <HeroLeadForm status={contactSource === "hero" ? contactStatus : null} />
+                            <HeroLeadForm />
                             <div className="flex flex-col gap-4 sm:flex-row">
                                 <a
                                     href={SCHEDULER_URL}
@@ -258,7 +252,7 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
                             </ol>
                         </div>
 
-                        <ContactForm status={contactSource === "footer" ? contactStatus : null} />
+                        <ContactForm />
                     </div>
                 </section>
             </main>
@@ -266,20 +260,4 @@ export default function HomePage({ contactStatus, contactSource }: HomePageProps
             <Footer />
         </div>
     );
-}
-
-export async function fetchProps(req: HttpRequest): Promise<HomePageProps> {
-    const contactParam = Array.isArray(req.query?.contact) ? req.query.contact[0] : req.query?.contact;
-    const messageParam = Array.isArray(req.query?.message) ? req.query.message[0] : req.query?.message;
-    const sourceParam = Array.isArray(req.query?.source) ? req.query.source[0] : req.query?.source;
-    // Older links (or a missing param) predate the hero form and always meant the footer form.
-    const contactSource = sourceParam === "hero" ? "hero" : "footer";
-
-    if (contactParam === "success") {
-        return { contactStatus: { type: "success" }, contactSource };
-    }
-    if (contactParam === "error") {
-        return { contactStatus: { type: "error", message: messageParam }, contactSource };
-    }
-    return { contactStatus: null, contactSource: null };
 }

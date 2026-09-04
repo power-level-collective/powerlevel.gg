@@ -1,20 +1,15 @@
 import React from "react";
-import type { HttpRequest } from "@rapidrest/service-core";
 import Header from "../shared/components/Header.js";
 import Footer from "../shared/components/Footer.js";
 import ServiceCard from "../shared/components/ServiceCard.js";
 import StatBar from "../shared/components/StatBar.js";
-import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
+import ContactForm from "../shared/components/ContactForm.js";
 import { ChevronIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
 import { partyStats } from "../shared/data/rosterSummary.js";
 import { valueProps } from "../shared/data/valueProps.js";
 
-interface HomePageProps {
-    contactStatus: ContactStatus | null;
-}
-
-export default function HomePage({ contactStatus }: HomePageProps) {
+export default function HomePage() {
     return (
         <div id="top" className="flex min-h-screen flex-col">
             <Header />
@@ -132,7 +127,7 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                             </ol>
                         </div>
 
-                        <ContactForm status={contactStatus} />
+                        <ContactForm />
                     </div>
                 </section>
             </main>
@@ -140,17 +135,4 @@ export default function HomePage({ contactStatus }: HomePageProps) {
             <Footer />
         </div>
     );
-}
-
-export async function fetchProps(req: HttpRequest): Promise<HomePageProps> {
-    const contactParam = Array.isArray(req.query?.contact) ? req.query.contact[0] : req.query?.contact;
-    const messageParam = Array.isArray(req.query?.message) ? req.query.message[0] : req.query?.message;
-
-    if (contactParam === "success") {
-        return { contactStatus: { type: "success" } };
-    }
-    if (contactParam === "error") {
-        return { contactStatus: { type: "error", message: messageParam } };
-    }
-    return { contactStatus: null };
 }

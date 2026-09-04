@@ -2,33 +2,19 @@ import React from "react";
 import { AlertIcon, CheckIcon } from "../icons/Icons.js";
 import { leadFormScript } from "./leadFormScript.js";
 
-export interface ContactStatus {
-    type: "success" | "error";
-    message?: string;
-}
-
-export default function ContactForm({ status }: { status?: ContactStatus | null }) {
+export default function ContactForm() {
     return (
         <div className="flex flex-col gap-5">
-            {status?.type === "success" && (
-                <div className="panel-cut-sm flex items-start gap-3 bg-surface p-4 text-sm text-success">
-                    <CheckIcon width={18} height={18} className="mt-0.5 shrink-0" />
-                    <span>Got it. We'll reach out within 1 business day to set up a call.</span>
-                </div>
-            )}
-            {status?.type === "error" && (
-                <div className="panel-cut-sm flex items-start gap-3 bg-surface p-4 text-sm text-danger">
-                    <AlertIcon width={18} height={18} className="mt-0.5 shrink-0" />
-                    <span>{status.message || "Something went wrong. Please try again."}</span>
-                </div>
-            )}
+            <div id="contact-success" hidden className="panel-cut-sm flex items-start gap-3 bg-surface p-4 text-sm text-success">
+                <CheckIcon width={18} height={18} className="mt-0.5 shrink-0" />
+                <span>Got it. We'll reach out within 1 business day to set up a call.</span>
+            </div>
+            <div id="contact-error" hidden className="panel-cut-sm flex items-start gap-3 bg-surface p-4 text-sm text-danger">
+                <AlertIcon width={18} height={18} className="mt-0.5 shrink-0" />
+                <span id="contact-error-message">Something went wrong. Please try again.</span>
+            </div>
 
-            <form
-                id="contact-form"
-                action="/api/contact"
-                method="POST"
-                className="panel-cut flex flex-col gap-5 p-7 sm:p-9"
-            >
+            <form id="contact-form" className="panel-cut flex flex-col gap-5 p-7 sm:p-9">
                 <div className="flex flex-col gap-2">
                     <label htmlFor="contact" className="field-label">
                         Email or Phone
@@ -59,14 +45,22 @@ export default function ContactForm({ status }: { status?: ContactStatus | null 
                         of purchase. Msg and data rates may apply. Reply STOP to opt out from texts, HELP for help. See our&nbsp;
                         <a href="/privacy">privacy policy</a>.
                     </p>
-                    <button type="submit" id="contact-submit" className="btn btn-primary">
+                    <button type="submit" id="contact-submit" className="btn btn-primary transition-opacity">
                         Get Started
                     </button>
                 </div>
             </form>
 
             <script
-                dangerouslySetInnerHTML={{ __html: leadFormScript("contact-form", "contact-submit", "footer", "contact") }}
+                dangerouslySetInnerHTML={{
+                    __html: leadFormScript(
+                        "contact-form",
+                        "contact-submit",
+                        "contact-success",
+                        "contact-error",
+                        "contact-error-message"
+                    ),
+                }}
             />
         </div>
     );
