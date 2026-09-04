@@ -13,7 +13,7 @@ export default function Header() {
     return (
         <header className="sticky top-0 z-50 border-b border-border bg-bg/90 backdrop-blur">
             <div className="container-plc flex h-20 items-center justify-between">
-                <a href="#top" className="flex items-center gap-2">
+                <a href="/#top" className="flex items-center gap-2">
                     <img src="/img/wordmark_logo.svg" alt="Power Level Collective" className="h-10 w-auto sm:h-14" />
                 </a>
 
