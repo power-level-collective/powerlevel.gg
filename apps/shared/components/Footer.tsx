@@ -41,6 +41,9 @@ export default function Footer() {
                         <a href="/privacy" className="hover:text-gold hover:underline">
                             Privacy Policy
                         </a>
+                        <a href="/terms" className="hover:text-gold hover:underline">
+                            Terms of Service
+                        </a>
                         <span>Power leveling the game industry, one milestone at a time.</span>
                     </div>
                 </div>
