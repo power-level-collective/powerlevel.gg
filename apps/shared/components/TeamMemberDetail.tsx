@@ -3,7 +3,7 @@ import Header from "./Header.js";
 import Footer from "./Footer.js";
 import MonogramAvatar from "./MonogramAvatar.js";
 import StatBar from "./StatBar.js";
-import { CreditGrid } from "./CreditBadge.js";
+import { CreditGrid, IconBadge } from "./CreditBadge.js";
 import { ChevronIcon } from "../icons/Icons.js";
 import { SCHEDULER_URL } from "../data/links.js";
 import type { TeamMember } from "../data/team.js";
@@ -66,86 +66,6 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                                     ))}
                                 </div>
                             </section>
-
-                            <section className="flex flex-col gap-4">
-                                <h2 className="font-display text-xl font-bold text-ink">Credits</h2>
-                                {member.credits.length > 0 ? (
-                                    <div className="flex flex-col divide-y divide-border">
-                                        {member.credits.map((credit) => (
-                                            <div
-                                                key={credit.title}
-                                                className="flex flex-col gap-1 py-4 first:pt-0 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
-                                            >
-                                                <div className="min-w-0">
-                                                    <h3 className="font-display text-base font-bold text-ink">
-                                                        {credit.url ? (
-                                                            <a
-                                                                href={credit.url}
-                                                                target="_blank"
-                                                                rel="noopener noreferrer"
-                                                                className="hover:text-gold hover:underline"
-                                                            >
-                                                                {credit.title}
-                                                            </a>
-                                                        ) : (
-                                                            credit.title
-                                                        )}
-                                                        {credit.year > 0 && (
-                                                            <span className="ml-2 font-body text-sm font-normal text-ink-faint">
-                                                                ({credit.year})
-                                                            </span>
-                                                        )}
-                                                    </h3>
-                                                    {credit.role && <p className="text-sm text-ink-muted">{credit.role}</p>}
-                                                </div>
-                                                <div className="shrink-0 text-sm text-ink-faint sm:text-right">
-                                                    {credit.studio && (
-                                                        <p>
-                                                            {credit.studio.url ? (
-                                                                <a
-                                                                    href={credit.studio.url}
-                                                                    target="_blank"
-                                                                    rel="noopener noreferrer"
-                                                                    className="hover:text-gold hover:underline"
-                                                                >
-                                                                    {credit.studio.name}
-                                                                </a>
-                                                            ) : (
-                                                                credit.studio.name
-                                                            )}
-                                                        </p>
-                                                    )}
-                                                    {credit.platforms.length > 0 && (
-                                                        <p>{credit.platforms.map((p) => p.name).join(" · ")}</p>
-                                                    )}
-                                                </div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p className="text-sm italic text-ink-faint">Credits coming soon.</p>
-                                )}
-                            </section>
-
-                            <section className="flex flex-col gap-4">
-                                <h2 className="font-display text-xl font-bold text-ink">Studios</h2>
-                                <CreditGrid credits={member.studios} emptyLabel="Studio history coming soon." />
-                            </section>
-
-                            <section className="flex flex-col gap-4">
-                                <h2 className="font-display text-xl font-bold text-ink">Hobbies</h2>
-                                {hobbies.length > 0 ? (
-                                    <div className="flex flex-wrap gap-2">
-                                        {hobbies.map((hobby) => (
-                                            <span key={hobby} className="chip">
-                                                {hobby}
-                                            </span>
-                                        ))}
-                                    </div>
-                                ) : (
-                                    <p className="text-sm italic text-ink-faint">Hobbies coming soon.</p>
-                                )}
-                            </section>
                         </div>
 
                         <div className="panel-cut flex flex-col gap-6 p-7 sm:p-9">
@@ -160,6 +80,108 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                             </div>
                         </div>
                     </div>
+
+                    <section className="flex flex-col gap-4">
+                        <h2 className="font-display text-xl font-bold text-ink">Credits</h2>
+                        {member.credits.length > 0 ? (
+                            <div className="flex flex-col divide-y divide-border">
+                                {member.credits.map((credit) => (
+                                    <div
+                                        key={credit.title}
+                                        className="flex flex-col gap-3 py-4 first:pt-0 sm:flex-row sm:items-center sm:justify-between sm:gap-6"
+                                    >
+                                        <div className="flex min-w-0 items-center gap-4">
+                                            {credit.logo && (
+                                                <img
+                                                    src={credit.logo}
+                                                    alt=""
+                                                    className="h-28 w-28 shrink-0 object-contain"
+                                                />
+                                            )}
+                                            <div className="min-w-0">
+                                                <h3 className="font-display text-base font-bold text-ink">
+                                                    {credit.url ? (
+                                                        <a
+                                                            href={credit.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="hover:text-gold hover:underline"
+                                                        >
+                                                            {credit.title}
+                                                        </a>
+                                                    ) : (
+                                                        credit.title
+                                                    )}
+                                                    {credit.year > 0 && (
+                                                        <span className="ml-2 font-body text-sm font-normal text-ink-faint">
+                                                            ({credit.year})
+                                                        </span>
+                                                    )}
+                                                </h3>
+                                                {credit.role && <p className="text-sm text-ink-muted">{credit.role}</p>}
+                                                {credit.studio && (
+                                                    <p className="text-sm text-ink-faint">
+                                                        {credit.studio.url ? (
+                                                            <a
+                                                                href={credit.studio.url}
+                                                                target="_blank"
+                                                                rel="noopener noreferrer"
+                                                                className="hover:text-gold hover:underline"
+                                                            >
+                                                                {credit.studio.name}
+                                                            </a>
+                                                        ) : (
+                                                            credit.studio.name
+                                                        )}
+                                                    </p>
+                                                )}
+                                            </div>
+                                        </div>
+                                        <div className="flex shrink-0 flex-col items-start gap-3 sm:items-end">
+                                            {credit.engine && (
+                                                <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                                                    <span className="field-label">Engine:</span>
+                                                    <IconBadge item={credit.engine} />
+                                                </div>
+                                            )}
+                                            {credit.platforms.length > 0 && (
+                                                <div className="flex flex-col items-start gap-1.5 sm:items-end">
+                                                    <span className="field-label">Platforms:</span>
+                                                    <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+                                                        {credit.platforms.map((platform) => (
+                                                            <IconBadge key={platform.name} item={platform} />
+                                                        ))}
+                                                    </div>
+                                                </div>
+                                            )}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm italic text-ink-faint">Credits coming soon.</p>
+                        )}
+                    </section>
+
+                    <section className="flex flex-col gap-4">
+                        <h2 className="font-display text-xl font-bold text-ink">Studios</h2>
+                        <CreditGrid credits={member.studios} emptyLabel="Studio history coming soon." />
+                    </section>
+
+                    <section className="flex flex-col gap-4">
+                        <h2 className="font-display text-xl font-bold text-ink">Hobbies</h2>
+                        {hobbies.length > 0 ? (
+                            <div className="flex flex-wrap gap-2">
+                                {hobbies.map((hobby) => (
+                                    <span key={hobby} className="chip">
+                                        {hobby}
+                                    </span>
+                                ))}
+                            </div>
+                        ) : (
+                            <p className="text-sm italic text-ink-faint">Hobbies coming soon.</p>
+                        )}
+                    </section>
 
                     <div className="panel-cut flex flex-col items-start gap-4 p-7 sm:flex-row sm:items-center sm:justify-between sm:p-9">
                         <div>

@@ -170,9 +170,12 @@
         transform: translateX(0);
     }
     to {
-        /* Track content is duplicated exactly once, so -50% lands precisely where the first
-           copy started — the loop point is invisible. */
-        transform: translateX(-50%);
+        /* The track repeats the credit list `--marquee-copies` times (more than 2 when the list is
+           short, so the track is always wider than the viewport — otherwise the loop point is
+           visibly inside the viewport instead of off-screen). Shifting by exactly one copy's width
+           (100% / copies) always lands precisely where the next copy started, regardless of copy
+           count, so the loop point stays invisible. */
+        transform: translateX(calc(-100% / var(--marquee-copies, 2)));
     }
 }
 
