@@ -5,7 +5,7 @@ import { SCHEDULER_URL } from "../data/links.js";
 const NAV_LINKS = [
     { href: "#services", label: "Services" },
     { href: "#why-us", label: "Why Us" },
-    { href: "#team", label: "Roster" },
+    { href: "/team", label: "Roster" },
     { href: "#contact", label: "Contact" },
 ];
 

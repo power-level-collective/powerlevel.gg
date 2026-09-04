@@ -3,12 +3,10 @@ import type { HttpRequest } from "@rapidrest/service-core";
 import Header from "../shared/components/Header.js";
 import Footer from "../shared/components/Footer.js";
 import ServiceCard from "../shared/components/ServiceCard.js";
-import TeamCard from "../shared/components/TeamCard.js";
 import StatBar from "../shared/components/StatBar.js";
 import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js";
 import { ChevronIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
-import { team } from "../shared/data/team.js";
 import { partyStats } from "../shared/data/rosterSummary.js";
 import { valueProps } from "../shared/data/valueProps.js";
 
@@ -104,26 +102,6 @@ export default function HomePage({ contactStatus }: HomePageProps) {
                                     <StatBar key={stat.label} label={stat.label} value={stat.fill} display={stat.value} />
                                 ))}
                             </div>
-                        </div>
-                    </div>
-                </section>
-
-                {/* ----------------------------------------------------------------- Team */}
-                <section id="team" className="border-b border-border py-24">
-                    <div className="container-plc flex flex-col gap-14">
-                        <div className="mx-auto flex max-w-2xl flex-col items-center gap-4 text-center">
-                            <span className="eyebrow">Meet the Party</span>
-                            <h2 className="font-display text-4xl font-extrabold text-ink sm:text-5xl">
-                                Your AAA Strike Team
-                            </h2>
-                            <p className="text-ink-muted">
-                                Every member of the Collective has shipped multiple AAA titles start to finish.
-                            </p>
-                        </div>
-                        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                            {team.map((member) => (
-                                <TeamCard key={member.id} member={member} />
-                            ))}
                         </div>
                     </div>
                 </section>

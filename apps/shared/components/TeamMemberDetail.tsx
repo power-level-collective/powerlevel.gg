@@ -18,7 +18,7 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
 
             <main className="flex-1 py-16 sm:py-20">
                 <div className="container-plc flex flex-col gap-12">
-                    <a href="/#team" className="nav-link inline-flex w-fit items-center gap-1.5">
+                    <a href="/team" className="nav-link inline-flex w-fit items-center gap-1.5">
                         <ChevronIcon width={14} height={14} className="rotate-180" />
                         Back to the Team
                     </a>
