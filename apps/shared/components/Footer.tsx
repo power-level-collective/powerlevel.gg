@@ -36,7 +36,7 @@ export default function Footer() {
                 </div>
 
                 <div className="flex flex-col gap-2 border-t border-border pt-6 text-xs text-ink-faint sm:flex-row sm:items-center sm:justify-between">
-                    <span>© {year} Power Level Collective. All rights reserved.</span>
+                    <span>© {year} Power Level Collective, LLC. All rights reserved.</span>
                     <div className="flex items-center gap-4">
                         <a href="/privacy" className="hover:text-gold hover:underline">
                             Privacy Policy
