@@ -10,7 +10,7 @@ export interface Studio {
 
 export const STUDIOS = {
     adhesive: { name: "Adhesive Games" },
-    ember_lab: { name: "Ember Lab", logo: "/img/logos/ember_lab.webp", url: "https://emberlab.com", showcase: true },
+    ember_lab: { name: "Ember Lab", logo: "/img/logos/ember_lab.png", url: "https://emberlab.com", showcase: true },
     riot: { name: "Riot Games", logo: "/img/logos/riot_games.png", url: "https://www.riotgames.com/", showcase: true },
     spark: { name: "Spark Unlimited", logo: "/img/logos/spark_unlimited.png", showcase: true },
     skydance: { name: "Skydance Interactive", logo: "/img/logos/skydance_interactive.jpg", url: "https://skydance.com/interactive", showcase: true },
