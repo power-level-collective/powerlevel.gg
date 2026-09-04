@@ -5,7 +5,7 @@ import type { ContactStatus } from "./ContactForm.js";
 
 export default function HeroLeadForm({ status }: { status?: ContactStatus | null }) {
     return (
-        <div className="flex w-full flex-col gap-2 sm:w-auto">
+        <div className="flex w-full flex-col gap-2 sm:w-[28rem]">
             <label htmlFor="hero-contact" className="field-label">
                 Share your email or phone. We'll reach out.
             </label>
@@ -20,7 +20,7 @@ export default function HeroLeadForm({ status }: { status?: ContactStatus | null
                     name="contact"
                     type="text"
                     required
-                    className="field-input w-full sm:w-80"
+                    className="field-input min-w-0 flex-1"
                     placeholder="Email or phone number"
                 />
 
@@ -39,6 +39,16 @@ export default function HeroLeadForm({ status }: { status?: ContactStatus | null
                     <ChevronIcon width={16} height={16} />
                 </button>
             </form>
+
+            <p className="text-xs text-ink-faint">
+                By entering your number or email address you agree to receive recurring automated marketing messages
+                from Power Level Collective at the number or email provided. Consent is not a condition of purchase.
+                Msg and data rates may apply. Reply STOP to opt out from texts, HELP for help. See our{" "}
+                <a href="/privacy" className="hover:text-gold hover:underline">
+                    privacy policy
+                </a>
+                .
+            </p>
 
             {status?.type === "success" && (
                 <div className="flex items-center gap-2 text-sm text-success">
