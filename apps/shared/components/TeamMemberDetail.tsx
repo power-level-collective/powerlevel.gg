@@ -188,7 +188,7 @@ export default function TeamMemberDetail({ member }: { member: TeamMember }) {
                             <h2 className="font-display text-xl font-bold text-ink">
                                 Want {member.name.split(" ")[0]} on your project?
                             </h2>
-                            <p className="mt-1 text-sm text-ink-muted">Tell us about your studio and timeline.</p>
+                            <p className="mt-1 text-sm text-ink-muted">We'll reach out within 1 business day.</p>
                         </div>
                         <a
                             href={SCHEDULER_URL}

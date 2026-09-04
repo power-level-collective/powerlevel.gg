@@ -3,10 +3,10 @@ import { ChevronIcon, CloseIcon, MenuIcon, MoonIcon, SunIcon } from "../icons/Ic
 import { SCHEDULER_URL } from "../data/links.js";
 
 const NAV_LINKS = [
-    { href: "#services", label: "Services" },
-    { href: "#why-us", label: "Why Us" },
-    { href: "/team", label: "Roster" },
-    { href: "#contact", label: "Contact" },
+    { href: "/#services", label: "Services" },
+    { href: "/#why-us", label: "Why Us" },
+    { href: "/#team", label: "Roster" },
+    { href: "/#contact", label: "Contact" },
 ];
 
 export default function Header() {
