@@ -9,7 +9,8 @@ import ContactForm, { ContactStatus } from "../shared/components/ContactForm.js"
 import { ChevronIcon } from "../shared/icons/Icons.js";
 import { services } from "../shared/data/services.js";
 import { team } from "../shared/data/team.js";
-import { valueProps, partyStats } from "../shared/data/valueProps.js";
+import { partyStats } from "../shared/data/rosterSummary.js";
+import { valueProps } from "../shared/data/valueProps.js";
 
 interface HomePageProps {
     contactStatus: ContactStatus | null;
