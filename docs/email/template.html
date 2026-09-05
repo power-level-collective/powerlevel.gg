@@ -5,13 +5,11 @@
   1. Paste this whole file into Klaviyo's email editor via "Edit HTML" / the code block
      source view (or your ESP's equivalent raw-HTML import).
   2. Replace everything marked EDIT: below with real campaign copy.
-  3. Replace the two placeholders in double-brackets:
-       [[MAILING_ADDRESS]]   — your CAN-SPAM-required physical postal address.
-       [[UNSUBSCRIBE_LINK]]  — swap for your ESP's actual unsubscribe merge tag
-                                (e.g. Klaviyo's own unsubscribe tag from its editor —
-                                verify the exact tag name in your account, since ESPs
-                                change these occasionally and using a stale one can
-                                mean legally-required unsubscribe links silently fail).
+  3. Replace [[MAILING_ADDRESS]] with your CAN-SPAM-required physical postal address.
+     The unsubscribe link already uses Klaviyo's required {% unsubscribe %} Liquid tag
+     (Klaviyo's own HTML validator rejects a template without it) — don't replace that
+     one with a plain URL. If you move to a different ESP later, swap it for that
+     platform's equivalent tag.
   4. Send yourself a test through Klaviyo's own preview/test-send AND a tool like
      Litmus or Email on Acid before a real campaign — no template can be verified
      as "correct" without checking real Outlook/Gmail/Apple Mail rendering, which
@@ -113,7 +111,10 @@
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-container" style="width:600px; max-width:600px;">
           <tr>
             <td align="center" style="padding-bottom:16px; font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:16px;">
-              <!-- EDIT/REPLACE: your ESP's "view in browser" merge tag -->
+              <!-- EDIT/REPLACE: unlike unsubscribe, Klaviyo doesn't require a specific tag here —
+                   this is a plain link placeholder. If you want the actual "hosted copy of this
+                   email" behavior, Klaviyo's editor has a view-in-browser tag you can insert from
+                   its own merge-tag picker; grab it from there rather than guessing the name. -->
               <a href="[[VIEW_IN_BROWSER_LINK]]" style="color:#626b7f;">View in browser</a>
             </td>
           </tr>
@@ -235,10 +236,9 @@
           <tr>
             <td align="center" style="font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:19px; color:#626b7f; padding:0 16px;">
               Power Level Collective, LLC<br>
-              [[MAILING_ADDRESS]]
-              <br><br>
+              <br>
               You're receiving this because you opted in at powerlevel.gg.<br>
-              <a href="[[UNSUBSCRIBE_LINK]]" style="color:#9aa3b7;">Unsubscribe</a>
+              <a href="{% unsubscribe %}" style="color:#9aa3b7;">Unsubscribe</a>
               &nbsp;·&nbsp;
               <a href="https://powerlevel.gg/privacy" style="color:#9aa3b7;">Privacy Policy</a>
               &nbsp;·&nbsp;
