@@ -1,0 +1,262 @@
+<!--
+  Power Level Collective — Standalone Marketing Email Template
+  ==============================================================
+  HOW TO USE
+  1. Paste this whole file into Klaviyo's email editor via "Edit HTML" / the code block
+     source view (or your ESP's equivalent raw-HTML import).
+  2. Replace everything marked EDIT: below with real campaign copy.
+  3. Replace the two placeholders in double-brackets:
+       [[MAILING_ADDRESS]]   — your CAN-SPAM-required physical postal address.
+       [[UNSUBSCRIBE_LINK]]  — swap for your ESP's actual unsubscribe merge tag
+                                (e.g. Klaviyo's own unsubscribe tag from its editor —
+                                verify the exact tag name in your account, since ESPs
+                                change these occasionally and using a stale one can
+                                mean legally-required unsubscribe links silently fail).
+  4. Send yourself a test through Klaviyo's own preview/test-send AND a tool like
+     Litmus or Email on Acid before a real campaign — no template can be verified
+     as "correct" without checking real Outlook/Gmail/Apple Mail rendering, which
+     this file can't do for you.
+
+  WHY THIS LOOKS DIFFERENT FROM THE REST OF THE SITE
+  Email HTML is its own platform: no flexbox/grid, no CSS custom properties, no
+  clip-path (so the site's signature cut-corner panels become plain rectangles
+  with a gold-to-blue top accent bar instead — the closest safe callback to that
+  shape language). Layout is nested tables; styling is inline on every element,
+  because most clients strip <style> blocks or apply them unreliably. The <style>
+  block below is a progressive enhancement only (responsive sizing, dark-mode
+  signaling) — every element also carries the same styling inline so the email
+  is still correct if <style> is ignored entirely.
+
+  This template commits to the brand's dark palette only, matching the live site's
+  dark-first default — see the color-scheme meta tags below.
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+<!-- This template deliberately supports dark mode only (matches the brand) — these two tags tell
+     clients not to auto-invert it into a light scheme it was never designed for. -->
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<title>Power Level Collective</title>
+<!--[if mso]>
+<noscript>
+<xml>
+<o:OfficeDocumentSettings>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+</noscript>
+<style>
+  table, td { border-collapse: collapse; }
+  * { font-family: Arial, Helvetica, sans-serif !important; }
+</style>
+<![endif]-->
+<style>
+  /* Progressive font enhancement — Outlook desktop and many other clients ignore @font-face
+     entirely, which is fine: every element below also sets an inline Arial/Helvetica fallback. */
+  @font-face {
+    font-family: 'Blender Pro';
+    src: url('https://powerlevel.gg/fonts/Blender-Pro-Heavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Blender Pro';
+    src: url('https://powerlevel.gg/fonts/Blender-Pro-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+  body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; background-color: #0a0d13; }
+  a { text-decoration: none; }
+
+  @media screen and (max-width: 600px) {
+    .email-container { width: 100% !important; }
+    .fluid { width: 100% !important; max-width: 100% !important; height: auto !important; }
+    .px-32 { padding-left: 20px !important; padding-right: 20px !important; }
+    .h1 { font-size: 26px !important; line-height: 32px !important; }
+    .stat-stack { display: block !important; width: 100% !important; padding: 0 0 16px 0 !important; }
+  }
+
+  /* Outlook.com web/app applies its own dark-mode color swap on top of ours in some cases —
+     these pin the intended colors back down rather than fighting it silently. */
+  [data-ogsc] .bg-card { background-color: #141824 !important; }
+  [data-ogsc] .text-ink { color: #eef1f7 !important; }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#0a0d13;">
+
+  <!-- Preheader: shows in the inbox preview line, hidden in the body. The trailing whitespace
+       entities stop Gmail/Apple Mail from pulling in the next visible text as a preview instead. -->
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
+    <!-- EDIT: preheader/preview text (~60-90 characters) -->
+    Every consultant on our roster has shipped multiple AAA titles.
+    &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  </div>
+
+  <center style="width:100%; background-color:#0a0d13;">
+  <!--[if mso]>
+  <table role="presentation" width="600" align="center" cellpadding="0" cellspacing="0"><tr><td>
+  <![endif]-->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0d13;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <!-- View in browser -->
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-container" style="width:600px; max-width:600px;">
+          <tr>
+            <td align="center" style="padding-bottom:16px; font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:16px;">
+              <!-- EDIT/REPLACE: your ESP's "view in browser" merge tag -->
+              <a href="[[VIEW_IN_BROWSER_LINK]]" style="color:#626b7f;">View in browser</a>
+            </td>
+          </tr>
+        </table>
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-container" style="width:600px; max-width:600px;">
+
+          <!-- Header / logo -->
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <a href="https://powerlevel.gg" style="text-decoration:none;">
+                <img src="https://powerlevel.gg/img/wordmark_logo.png" width="220" alt="Power Level Collective" class="fluid" style="display:block; width:220px; max-width:60%; height:auto; font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#eef1f7;">
+              </a>
+            </td>
+          </tr>
+
+          <!-- Gold-to-blue accent bar — the email-safe callback to the site's mark, since
+               clip-path panels and gradients aren't reliably supported in email clients. -->
+          <tr>
+            <td style="height:4px; line-height:4px; font-size:0; background-color:#f2af0d;">&nbsp;</td>
+          </tr>
+
+          <!-- Main content card -->
+          <tr>
+            <td class="bg-card px-32" style="background-color:#141824; padding:40px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#f2af0d; padding-bottom:14px;">
+                    <!-- EDIT: eyebrow / campaign label -->
+                    New From The Collective
+                  </td>
+                </tr>
+                <tr>
+                  <td class="h1 text-ink" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:32px; line-height:38px; font-weight:800; color:#eef1f7; padding-bottom:18px;">
+                    <!-- EDIT: headline -->
+                    Power Level Your Studio.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:26px; color:#9aa3b7; padding-bottom:28px;">
+                    <!-- EDIT: body copy -->
+                    Power Level Collective is a strike team of veteran AAA developers offering custom
+                    backend &amp; infrastructure, tools &amp; pipeline engineering, co-development, and
+                    full-cycle development. Every consultant on our roster has shipped multiple AAA
+                    titles start to finish.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <!-- Button: solid background-color fallback alongside the gradient, since
+                         Outlook's Word engine ignores CSS gradients on table cells entirely. -->
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="background-color:#f2af0d; background-image:linear-gradient(135deg,#f6ca5f,#f2af0d);">
+                          <!-- EDIT: CTA link + label -->
+                          <a href="https://powerlevel.gg/#contact" style="display:inline-block; padding:14px 28px; font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#1a1206;">
+                            Book a Call
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Spacer -->
+          <tr><td style="height:24px; line-height:24px; font-size:0;">&nbsp;</td></tr>
+
+          <!-- Secondary content: stat row example — delete this block for campaigns that don't need it -->
+          <tr>
+            <td class="bg-card px-32" style="background-color:#141824; padding:32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#f2af0d; padding-bottom:18px;">
+                    Party Stats
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <!-- EDIT: swap the three stat labels/values, or delete cells for fewer stats -->
+                        <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">69</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Years Experience</div>
+                        </td>
+                        <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">15</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Shipped Titles</div>
+                        </td>
+                        <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">11</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Platforms</div>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Spacer -->
+          <tr><td style="height:32px; line-height:32px; font-size:0;">&nbsp;</td></tr>
+
+          <!-- Social / secondary links — delete row if unused -->
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <!-- EDIT: social links -->
+              <!-- <a href="https://powerlevel.gg/team" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#9aa3b7; padding:0 10px;">Roster</a> -->
+              <!-- <span style="color:#626b7f;">·</span> -->
+              <a href="mailto:hello@powerlevel.gg" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#9aa3b7; padding:0 10px;">hello@powerlevel.gg</a>
+            </td>
+          </tr>
+
+          <!-- Footer: compliance -->
+          <tr>
+            <td align="center" style="font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:19px; color:#626b7f; padding:0 16px;">
+              Power Level Collective, LLC<br>
+              [[MAILING_ADDRESS]]
+              <br><br>
+              You're receiving this because you opted in at powerlevel.gg.<br>
+              <a href="[[UNSUBSCRIBE_LINK]]" style="color:#9aa3b7;">Unsubscribe</a>
+              &nbsp;·&nbsp;
+              <a href="https://powerlevel.gg/privacy" style="color:#9aa3b7;">Privacy Policy</a>
+              &nbsp;·&nbsp;
+              <a href="https://powerlevel.gg/terms" style="color:#9aa3b7;">Terms</a>
+            </td>
+          </tr>
+
+          <tr><td style="height:32px; line-height:32px; font-size:0;">&nbsp;</td></tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+  <!--[if mso]>
+  </td></tr></table>
+  <![endif]-->
+  </center>
+
+</body>
+</html>
