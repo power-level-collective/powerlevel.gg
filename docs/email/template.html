@@ -2,18 +2,38 @@
   Power Level Collective — Standalone Marketing Email Template
   ==============================================================
   HOW TO USE
-  1. Paste this whole file into Klaviyo's email editor via "Edit HTML" / the code block
-     source view (or your ESP's equivalent raw-HTML import).
-  2. Replace everything marked EDIT: below with real campaign copy.
-  3. Replace [[MAILING_ADDRESS]] with your CAN-SPAM-required physical postal address.
-     The unsubscribe link already uses Klaviyo's required {% unsubscribe %} Liquid tag
-     (Klaviyo's own HTML validator rejects a template without it) — don't replace that
-     one with a plain URL. If you move to a different ESP later, swap it for that
-     platform's equivalent tag.
+  1. Save this file as-is once in Klaviyo's Template Library (Content > Templates) — that's
+     your master. Every new campaign then clones a fresh copy from it instead of editing
+     the master directly.
+  2. In each clone, find-and-replace every [[BRACKETED_TOKEN]] below with real copy for
+     that send. Nothing else needs to change — structure, styles, and the compliance/footer
+     elements are fixed on purpose (see PER-CAMPAIGN TOKENS below for the full list).
+  3. The mailing address and unsubscribe link are deliberately NOT tokens — they don't
+     change between campaigns, so they're filled in for real once, here in the master,
+     rather than something you re-enter (and could forget) on every send. The unsubscribe
+     link uses Klaviyo's required {% unsubscribe %} Liquid tag (Klaviyo's own HTML
+     validator rejects a template without it) — don't replace it with a plain URL. If you
+     move to a different ESP later, swap it for that platform's equivalent tag.
   4. Send yourself a test through Klaviyo's own preview/test-send AND a tool like
      Litmus or Email on Acid before a real campaign — no template can be verified
      as "correct" without checking real Outlook/Gmail/Apple Mail rendering, which
      this file can't do for you.
+
+  PER-CAMPAIGN TOKENS (find-and-replace all of these in every new send)
+    [[PREHEADER]]            Inbox preview text, ~60-90 characters.
+    [[EYEBROW]]              Small label above the headline.
+    [[HEADLINE]]             Main headline.
+    [[BODY_COPY]]            Main paragraph.
+    [[CTA_LINK]]             Where the button goes.
+    [[CTA_LABEL]]            Button text.
+    [[STAT_1_VALUE]] / [[STAT_1_LABEL]]   Party Stats block, left column.
+    [[STAT_2_VALUE]] / [[STAT_2_LABEL]]   Party Stats block, middle column.
+    [[STAT_3_VALUE]] / [[STAT_3_LABEL]]   Party Stats block, right column.
+    [[VIEW_IN_BROWSER_LINK]] Klaviyo doesn't require a specific tag here (unlike
+                              unsubscribe) — grab the real one from Klaviyo's own
+                              merge-tag picker in its editor rather than guessing.
+  The Party Stats block is optional — delete the whole row (see comment at that block)
+  for a campaign that doesn't need it, rather than leaving the tokens unfilled.
 
   WHY THIS LOOKS DIFFERENT FROM THE REST OF THE SITE
   Email HTML is its own platform: no flexbox/grid, no CSS custom properties, no
@@ -94,8 +114,7 @@
   <!-- Preheader: shows in the inbox preview line, hidden in the body. The trailing whitespace
        entities stop Gmail/Apple Mail from pulling in the next visible text as a preview instead. -->
   <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
-    <!-- EDIT: preheader/preview text (~60-90 characters) -->
-    Every consultant on our roster has shipped multiple AAA titles.
+    [[PREHEADER]]
     &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
   </div>
 
@@ -111,7 +130,6 @@
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-container" style="width:600px; max-width:600px;">
           <tr>
             <td align="center" style="padding-bottom:16px; font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:16px;">
-              <!-- EDIT/REPLACE: your ESP's "view in browser" merge tag -->
               <a href="[[VIEW_IN_BROWSER_LINK]]" style="color:#626b7f;">View in browser</a>
             </td>
           </tr>
@@ -140,23 +158,17 @@
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                 <tr>
                   <td style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#f2af0d; padding-bottom:14px;">
-                    <!-- EDIT: eyebrow / campaign label -->
-                    New From The Collective
+                    [[EYEBROW]]
                   </td>
                 </tr>
                 <tr>
                   <td class="h1 text-ink" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:32px; line-height:38px; font-weight:800; color:#eef1f7; padding-bottom:18px;">
-                    <!-- EDIT: headline -->
-                    Power Level Your Studio.
+                    [[HEADLINE]]
                   </td>
                 </tr>
                 <tr>
                   <td style="font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:26px; color:#9aa3b7; padding-bottom:28px;">
-                    <!-- EDIT: body copy -->
-                    Power Level Collective is a strike team of veteran AAA developers offering custom
-                    backend &amp; infrastructure, tools &amp; pipeline engineering, co-development, and
-                    full-cycle development. Every consultant on our roster has shipped multiple AAA
-                    titles start to finish.
+                    [[BODY_COPY]]
                   </td>
                 </tr>
                 <tr>
@@ -166,9 +178,8 @@
                     <table role="presentation" cellpadding="0" cellspacing="0">
                       <tr>
                         <td align="center" style="background-color:#f2af0d; background-image:linear-gradient(135deg,#f6ca5f,#f2af0d);">
-                          <!-- EDIT: CTA link + label -->
-                          <a href="https://powerlevel.gg/#contact" style="display:inline-block; padding:14px 28px; font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#1a1206;">
-                            Book a Call
+                          <a href="[[CTA_LINK]]" style="display:inline-block; padding:14px 28px; font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#1a1206;">
+                            [[CTA_LABEL]]
                           </a>
                         </td>
                       </tr>
@@ -195,18 +206,20 @@
                   <td>
                     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
                       <tr>
-                        <!-- EDIT: swap the three stat labels/values, or delete cells for fewer stats -->
+                        <!-- Delete this whole row (and the block's <tr> above/below it) for a
+                             campaign that doesn't need a stats row, rather than leaving tokens
+                             unfilled. -->
                         <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
-                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">69</div>
-                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Years Experience</div>
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">[[STAT_1_VALUE]]</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">[[STAT_1_LABEL]]</div>
                         </td>
                         <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
-                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">15</div>
-                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Shipped Titles</div>
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">[[STAT_2_VALUE]]</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">[[STAT_2_LABEL]]</div>
                         </td>
                         <td class="stat-stack" align="center" width="33%" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; padding:8px;">
-                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">11</div>
-                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">Platforms</div>
+                          <div style="font-size:28px; font-weight:800; color:#f2af0d;">[[STAT_3_VALUE]]</div>
+                          <div style="font-size:11px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#9aa3b7; padding-top:4px;">[[STAT_3_LABEL]]</div>
                         </td>
                       </tr>
                     </table>
