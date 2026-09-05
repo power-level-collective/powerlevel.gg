@@ -1,5 +1,5 @@
 import React from "react";
-import type { Studio } from "../data/team.js";
+import type { Studio } from "../data/studios.js";
 
 /**
  * Small icon-only badge for a compact inline row (e.g. platforms/engine on a credit line) — the
