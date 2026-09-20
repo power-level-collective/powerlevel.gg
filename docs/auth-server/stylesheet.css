@@ -1,0 +1,519 @@
+/*
+ * Power Level Collective branding for the RapidREST auth-server.
+ * Source of truth: https://powerlevel.gg/style-guide/
+ *
+ * Import this file as the deployment's stylesheet (Admin > Settings > Stylesheet), alongside header.html and
+ * footer.html. It re-points the auth-server's own `--rr-*` design tokens and restyles its `.rr-*` components, so
+ * nothing in the app needs to know about it; the `.plc-*` classes are the ones header.html / footer.html use.
+ *
+ * Role mapping: in this app `--rr-color-primary*` is the call-to-action colour, so it carries the brand's Gold.
+ * The brand's Blue is used for text links (`--plc-link`). `--rr-color-accent*` only styles warnings here, and
+ * stays in the gold family.
+ *
+ * Theme: dark by default, as the brand specifies. The light palette applies when the visitor's OS asks for a
+ * light scheme, or when <html data-theme="light"> is set; <html data-theme="dark"> forces dark either way.
+ */
+
+/* Inter is the body typeface; this app does not link it itself. */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap");
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Fonts - Blender Pro (headings, labels, navigation, buttons, badges). Never used for long-form text.
+ * Served by powerlevel.gg, which sends `access-control-allow-origin: *`, so they load from any origin.
+ * ----------------------------------------------------------------------------------------------------------- */
+@font-face {
+    font-family: "Blender Pro";
+    src: url("https://powerlevel.gg/fonts/Blender-Pro-Book.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("https://powerlevel.gg/fonts/Blender-Pro-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("https://powerlevel.gg/fonts/Blender-Pro-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+@font-face {
+    font-family: "Blender Pro";
+    src: url("https://powerlevel.gg/fonts/Blender-Pro-Heavy.ttf") format("truetype");
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Design tokens
+ *
+ * Every theme selector is `html:root...` (specificity 0,2,1) so it out-ranks the app's own `:root:not(...)` /
+ * `:root[data-theme]` blocks (0,2,0) whichever order the stylesheets load in.
+ * ----------------------------------------------------------------------------------------------------------- */
+
+/* Dark - the default. */
+html:root:not([data-theme="light"]) {
+    color-scheme: dark;
+
+    --rr-color-bg: #0a0d13;
+    --rr-color-surface: #141824;
+    --rr-color-surface-alt: #1b2130;
+    --rr-color-border: #2b3244;
+    --rr-color-text: #eef1f7;
+    --rr-color-text-muted: #9aa3b7;
+    --rr-color-text-on-primary: #1a1206;
+
+    /* Gold - call-to-action buttons, focus rings, active states. */
+    --rr-color-primary: #f2af0d;
+    --rr-color-primary-dark: #c98a1d;
+    --rr-color-primary-darker: #a3690a;
+    --rr-color-primary-darkest: #7a4e08;
+    --rr-color-primary-light: #f6ca5f;
+    --rr-color-primary-lighter: #fadf9b;
+    --rr-color-primary-lightest: #fce9ba;
+
+    /* Warnings stay in the gold family. */
+    --rr-color-accent: #f2af0d;
+    --rr-color-accent-dark: #f6ca5f;
+    --rr-color-accent-bg: #2a2008;
+
+    --rr-color-danger: #f2554d;
+    --rr-color-danger-bg: #3a1517;
+    --rr-color-success: #33c48a;
+
+    --rr-shadow-lw: 0 1px 2px 0 rgba(0, 0, 0, 0.35);
+    --rr-shadow-md: 0 8px 40px rgba(0, 0, 0, 0.6);
+
+    --plc-gold: #f2af0d;
+    --plc-gold-soft: #f6ca5f;
+    --plc-gold-text: #f2af0d;
+    --plc-blue: #0d79f2;
+    --plc-link: #3d93ff;
+    --plc-field-bg: #0f131c;
+    --plc-border-strong: rgba(255, 255, 255, 0.18);
+    --plc-backdrop: rgba(4, 6, 10, 0.72);
+}
+
+/* Light - when the OS asks for it, unless the page pins dark. */
+@media (prefers-color-scheme: light) {
+    html:root:not([data-theme="dark"]) {
+        color-scheme: light;
+
+        --rr-color-bg: #f7f5ee;
+        --rr-color-surface: #ffffff;
+        --rr-color-surface-alt: #f0ece0;
+        --rr-color-border: #ddd8c9;
+        --rr-color-text: #15181f;
+        --rr-color-text-muted: #575f70;
+        --rr-color-text-on-primary: #000000;
+
+        --rr-color-primary: #a3690a;
+        --rr-color-primary-dark: #7a4e08;
+        --rr-color-primary-darker: #5c3b06;
+        --rr-color-primary-darkest: #402904;
+        --rr-color-primary-light: #c98a1d;
+        --rr-color-primary-lighter: #e0a83f;
+        --rr-color-primary-lightest: #fbe9c2;
+
+        --rr-color-accent: #a3690a;
+        --rr-color-accent-dark: #7a4e08;
+        --rr-color-accent-bg: #fbe9c2;
+
+        --rr-color-danger: #c9372c;
+        --rr-color-danger-bg: #fdeceb;
+        --rr-color-success: #128a5e;
+
+        --rr-shadow-lw: 0 1px 2px 0 rgba(20, 20, 15, 0.12);
+        --rr-shadow-md: 0 5px 40px rgba(20, 20, 15, 0.14);
+
+        --plc-gold: #a3690a;
+        --plc-gold-soft: #c98a1d;
+        --plc-gold-text: #7a4e08;
+        --plc-blue: #0d79f2;
+        --plc-link: #0c62cc;
+        --plc-field-bg: #ffffff;
+        --plc-border-strong: rgba(20, 20, 15, 0.2);
+        --plc-backdrop: rgba(20, 20, 15, 0.5);
+    }
+}
+
+/* Light - pinned by the page. Same values as above; a media query cannot be shared with a plain selector. */
+html:root[data-theme="light"] {
+    color-scheme: light;
+
+    --rr-color-bg: #f7f5ee;
+    --rr-color-surface: #ffffff;
+    --rr-color-surface-alt: #f0ece0;
+    --rr-color-border: #ddd8c9;
+    --rr-color-text: #15181f;
+    --rr-color-text-muted: #575f70;
+    --rr-color-text-on-primary: #000000;
+
+    --rr-color-primary: #a3690a;
+    --rr-color-primary-dark: #7a4e08;
+    --rr-color-primary-darker: #5c3b06;
+    --rr-color-primary-darkest: #402904;
+    --rr-color-primary-light: #c98a1d;
+    --rr-color-primary-lighter: #e0a83f;
+    --rr-color-primary-lightest: #fbe9c2;
+
+    --rr-color-accent: #a3690a;
+    --rr-color-accent-dark: #7a4e08;
+    --rr-color-accent-bg: #fbe9c2;
+
+    --rr-color-danger: #c9372c;
+    --rr-color-danger-bg: #fdeceb;
+    --rr-color-success: #128a5e;
+
+    --rr-shadow-lw: 0 1px 2px 0 rgba(20, 20, 15, 0.12);
+    --rr-shadow-md: 0 5px 40px rgba(20, 20, 15, 0.14);
+
+    --plc-gold: #a3690a;
+    --plc-gold-soft: #c98a1d;
+    --plc-gold-text: #7a4e08;
+    --plc-blue: #0d79f2;
+    --plc-link: #0c62cc;
+    --plc-field-bg: #ffffff;
+    --plc-border-strong: rgba(20, 20, 15, 0.2);
+    --plc-backdrop: rgba(20, 20, 15, 0.5);
+}
+
+/* Theme-independent tokens. Panels are never rounded in this brand (pills, chips and avatars still are). */
+html:root {
+    --rr-radius-sm: 0;
+    --rr-radius-md: 0;
+    --rr-radius-lg: 0;
+
+    --rr-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --rr-font-display: "Blender Pro", "Arial Narrow", "Segoe UI", sans-serif;
+
+    /* The admin sidebar stays dark in both themes, with gold marking the active item. */
+    --rr-admin-sidebar-bg: #0a0d13;
+    --rr-admin-sidebar-border: rgba(255, 255, 255, 0.08);
+    --rr-admin-sidebar-icon: #9aa3b7;
+    --rr-admin-sidebar-icon-active: #f2af0d;
+    --rr-admin-sidebar-item-hover-bg: rgba(255, 255, 255, 0.06);
+    --rr-admin-sidebar-item-active-bg: rgba(242, 175, 13, 0.14);
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Base
+ * ----------------------------------------------------------------------------------------------------------- */
+
+::selection {
+    background: var(--rr-color-primary);
+    color: var(--rr-color-text-on-primary);
+}
+
+:focus-visible {
+    outline-color: var(--rr-color-primary);
+}
+
+/* Text links are the brand's blue. Deliberately plain element specificity, so any component that sets its own
+ * colour on an anchor (sidebar items, link-styled buttons, the nav below) keeps it. The one gap: a page that pins
+ * <html data-theme="dark"> gets the app's own `:root[data-theme="dark"] a` colour instead; nothing does today. */
+a,
+.rr-button--text {
+    color: var(--plc-link);
+}
+
+h1,
+h2,
+h3 {
+    font-family: var(--rr-font-display);
+}
+
+/* Blender Pro is uppercase and wide-tracked below H2; larger titles keep sentence case. */
+.rr-section-title,
+.rr-modal__title,
+.rr-card__title {
+    font-family: var(--rr-font-display);
+    letter-spacing: 0.02em;
+}
+
+.rr-section-title,
+.rr-modal__title {
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.rr-brand span {
+    font-family: var(--rr-font-display);
+    font-weight: 800;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Panels - cut corners with an inset line (a border would be clipped along with the corners)
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.rr-card,
+.rr-modal {
+    border: none;
+    box-shadow: inset 0 0 0 1.5px var(--rr-color-border);
+    clip-path: polygon(1.1rem 0, 100% 0, 100% calc(100% - 1.1rem), calc(100% - 1.1rem) 100%, 0 100%, 0 1.1rem);
+}
+
+.rr-modal-backdrop {
+    background: var(--plc-backdrop);
+}
+
+.rr-alert {
+    border-left: 3px solid currentColor;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Forms
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.rr-input,
+.rr-code-input {
+    background: var(--plc-field-bg);
+    border-color: var(--plc-border-strong);
+}
+
+.rr-tab {
+    font-family: var(--rr-font-display);
+    font-size: 0.8rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}
+
+.rr-badge,
+.rr-chip {
+    font-family: var(--rr-font-display);
+}
+
+.rr-table th {
+    font-family: var(--rr-font-display);
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Buttons - Blender Pro caps, cut corners. Primary is the gold gradient; secondary is a neutral tile that turns
+ * gold on hover. Copy should say what happens ("Sign in", "Create account"), never "Submit".
+ *
+ * clip-path also clips outlines, so focus is drawn inside the button instead.
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.rr-button {
+    font-family: var(--rr-font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    padding: 0.8rem 1.25rem;
+    border: none;
+    clip-path: polygon(0.6rem 0, 100% 0, 100% calc(100% - 0.6rem), calc(100% - 0.6rem) 100%, 0 100%, 0 0.6rem);
+}
+
+.rr-button:focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 0 2px var(--rr-color-primary);
+}
+
+.rr-button--primary {
+    background: linear-gradient(135deg, var(--plc-gold-soft), var(--rr-color-primary));
+    color: var(--rr-color-text-on-primary);
+}
+
+.rr-button--primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--plc-gold-soft), var(--rr-color-primary));
+    filter: brightness(1.08);
+}
+
+.rr-button--primary:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--rr-color-bg), inset 0 0 0 4px var(--rr-color-text-on-primary);
+}
+
+.rr-button--secondary,
+.rr-button--oauth {
+    background: var(--rr-color-surface-alt);
+    color: var(--rr-color-text);
+    box-shadow: inset 0 0 0 1.5px var(--plc-border-strong);
+}
+
+.rr-button--secondary:hover:not(:disabled),
+.rr-button--oauth:hover:not(:disabled) {
+    box-shadow: inset 0 0 0 1.5px var(--rr-color-primary);
+    color: var(--plc-gold-text);
+}
+
+.rr-button--secondary:focus-visible,
+.rr-button--oauth:focus-visible {
+    box-shadow: inset 0 0 0 2px var(--rr-color-primary);
+}
+
+/* Text buttons read as links, so they drop the button treatment. */
+.rr-button--text {
+    font-family: var(--rr-font-family);
+    font-size: 0.925rem;
+    font-weight: 600;
+    letter-spacing: 0;
+    text-transform: none;
+    padding: 0.4rem 0.2rem;
+    clip-path: none;
+}
+
+.rr-button--text:focus-visible {
+    box-shadow: none;
+    outline: 2px solid var(--rr-color-primary);
+    outline-offset: 2px;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Admin console
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.rr-admin-topbar__title {
+    font-family: var(--rr-font-display);
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Header (header.html) - rendered inside `.rr-custom-header`, which sits in a narrow centred column on the
+ * sign-in pages and in the wide content area of the admin console.
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.plc-header {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--rr-color-border);
+}
+
+/* The wordmark's underline bar: a long gold run ending in a short blue one. */
+.plc-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--plc-gold) 0, var(--plc-gold) 72%, var(--plc-blue) 72%, var(--plc-blue) 100%);
+}
+
+.plc-header__brand {
+    display: inline-flex;
+    align-items: center;
+    line-height: 0;
+}
+
+.plc-header__brand img {
+    display: block;
+    height: 2.5rem;
+    width: auto;
+}
+
+.plc-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.25rem 1.25rem;
+}
+
+.plc-header__nav a {
+    font-family: var(--rr-font-display);
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--rr-color-text-muted);
+    transition: color 0.15s ease;
+}
+
+.plc-header__nav a:hover,
+.plc-header__nav a:focus-visible {
+    color: var(--plc-gold-text);
+}
+
+.rr-admin-content .plc-header {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.75rem 1.5rem;
+}
+
+/* -------------------------------------------------------------------------------------------------------------
+ * Footer (footer.html) - rendered inside `.rr-custom-footer`, which already supplies the top rule and spacing.
+ * ----------------------------------------------------------------------------------------------------------- */
+
+.plc-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--rr-color-text-muted);
+    font-family: var(--rr-font-family);
+    font-size: 0.75rem;
+    line-height: 1.5;
+    text-align: center;
+}
+
+.plc-footer__legal,
+.plc-footer__meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.25rem 1.25rem;
+}
+
+.plc-footer a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.plc-footer a:hover,
+.plc-footer a:focus-visible {
+    color: var(--plc-gold-text);
+    text-decoration: underline;
+}
+
+/* An envelope, drawn as a mask so it takes the link's colour. */
+.plc-footer__mail::before {
+    content: "";
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    margin-right: 0.4em;
+    vertical-align: -0.15em;
+    background: currentColor;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='1'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E") center / contain no-repeat;
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='5' width='18' height='14' rx='1'/%3E%3Cpath d='m3 7 9 6 9-6'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+
+.rr-admin-content .plc-footer {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1.5rem;
+    text-align: left;
+}
+
+.rr-admin-content .plc-footer__legal,
+.rr-admin-content .plc-footer__meta {
+    justify-content: flex-start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .rr-button,
+    .rr-input,
+    .rr-tab,
+    .plc-header__nav a,
+    .plc-footer a {
+        transition: none;
+    }
+}
