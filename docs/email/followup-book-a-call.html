@@ -1,0 +1,201 @@
+<!--
+  Power Level Collective — Lead Form Follow-Up #2 ("Still want to chat?")
+  ==============================================================
+  The nudge that follows docs/email/welcome-book-a-call.html when a lead hasn't clicked
+  through or replied — same list, same flow, next step. Built from docs/email/template.html;
+  this is a filled-in instance, not a template to clone further.
+
+  SET UP AS
+  Email #2 in the same Klaviyo Flow as welcome-book-a-call.html:
+    Trigger: Subscribed to List
+    Email #1: welcome-book-a-call.html, sent immediately
+    Wait: 2-3 days
+    Conditional split: "If clicked docs/email/welcome-book-a-call.html" — Yes branch ends here
+      (they're already engaging, don't nag); No branch continues to this email.
+    Email #2: this file.
+  Without that conditional split this just becomes a second copy of the same pitch to
+  someone who already acted on the first one — the split is what makes it a re-engagement
+  email instead of a redundant one.
+
+  SUGGESTED SUBJECT LINE (set in Klaviyo's flow email settings, not in this HTML)
+    "Still want to chat?"
+
+  BEFORE SENDING
+  Same as welcome-book-a-call.html: replace [[SCHEDULER_LINK]] with the real value of
+  SCHEDULER_URL once the calendar tool is set up.
+-->
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no, url=no">
+<meta name="color-scheme" content="dark">
+<meta name="supported-color-schemes" content="dark">
+<title>Power Level Collective</title>
+<!--[if mso]>
+<noscript>
+<xml>
+<o:OfficeDocumentSettings>
+<o:PixelsPerInch>96</o:PixelsPerInch>
+</o:OfficeDocumentSettings>
+</xml>
+</noscript>
+<style>
+  table, td { border-collapse: collapse; }
+  * { font-family: Arial, Helvetica, sans-serif !important; }
+</style>
+<![endif]-->
+<style>
+  @font-face {
+    font-family: 'Blender Pro';
+    src: url('https://powerlevel.gg/fonts/Blender-Pro-Heavy.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: 'Blender Pro';
+    src: url('https://powerlevel.gg/fonts/Blender-Pro-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  body, table, td, a { -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; }
+  table, td { mso-table-lspace: 0pt; mso-table-rspace: 0pt; }
+  img { -ms-interpolation-mode: bicubic; border: 0; height: auto; line-height: 100%; outline: none; text-decoration: none; }
+  body { margin: 0; padding: 0; width: 100% !important; height: 100% !important; background-color: #0a0d13; }
+  a { text-decoration: none; }
+
+  @media screen and (max-width: 600px) {
+    .email-container { width: 100% !important; }
+    .fluid { width: 100% !important; max-width: 100% !important; height: auto !important; }
+    .px-32 { padding-left: 20px !important; padding-right: 20px !important; }
+    .h1 { font-size: 26px !important; line-height: 32px !important; }
+  }
+
+  [data-ogsc] .bg-card { background-color: #141824 !important; }
+  [data-ogsc] .text-ink { color: #eef1f7 !important; }
+</style>
+</head>
+<body style="margin:0; padding:0; background-color:#0a0d13;">
+
+  <div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">
+    Still want to grab 15 minutes? The offer's still open.
+    &nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  </div>
+
+  <center style="width:100%; background-color:#0a0d13;">
+  <!--[if mso]>
+  <table role="presentation" width="600" align="center" cellpadding="0" cellspacing="0"><tr><td>
+  <![endif]-->
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#0a0d13;">
+    <tr>
+      <td align="center" style="padding:32px 16px;">
+
+        <table role="presentation" width="100%" cellpadding="0" cellspacing="0" class="email-container" style="width:600px; max-width:600px;">
+
+          <!-- Header / logo -->
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <a href="https://powerlevel.gg" style="text-decoration:none;">
+                <img src="https://powerlevel.gg/img/wordmark_logo.png" width="220" alt="Power Level Collective" class="fluid" style="display:block; width:220px; max-width:60%; height:auto; font-family:Arial,Helvetica,sans-serif; font-size:14px; color:#eef1f7;">
+              </a>
+            </td>
+          </tr>
+
+          <tr>
+            <td style="height:4px; line-height:4px; font-size:0; background-color:#f2af0d;">&nbsp;</td>
+          </tr>
+
+          <!-- Main content card -->
+          <tr>
+            <td class="bg-card px-32" style="background-color:#141824; padding:40px 32px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#f2af0d; padding-bottom:14px;">
+                    Just Checking In
+                  </td>
+                </tr>
+                <tr>
+                  <td class="h1 text-ink" style="font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:32px; line-height:38px; font-weight:800; color:#eef1f7; padding-bottom:18px;">
+                    Still thinking it over?
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:26px; color:#9aa3b7; padding-bottom:8px;">
+                    A couple of days ago you told us you wanted to hear from Power Level Collective —
+                    we haven't seen you on the calendar yet, so we wanted to check in.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family:Arial,Helvetica,sans-serif; font-size:16px; line-height:26px; color:#9aa3b7; padding-bottom:28px;">
+                    Booking a call doesn't commit you to anything. It's 15 minutes to talk through
+                    your project and see if a veteran team that's shipped multiple AAA titles is the
+                    right fit — no pitch deck required.
+                  </td>
+                </tr>
+                <tr>
+                  <td style="padding-bottom:16px;">
+                    <!-- Button: solid background-color fallback alongside the gradient, since
+                         Outlook's Word engine ignores CSS gradients on table cells entirely. -->
+                    <table role="presentation" cellpadding="0" cellspacing="0">
+                      <tr>
+                        <td align="center" style="background-color:#f2af0d; background-image:linear-gradient(135deg,#f6ca5f,#f2af0d);">
+                          <a href="[[SCHEDULER_LINK]]" style="display:inline-block; padding:14px 28px; font-family:'Blender Pro',Arial,Helvetica,sans-serif; font-size:14px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#1a1206;">
+                            Book a Call
+                          </a>
+                        </td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-family:Arial,Helvetica,sans-serif; font-size:13px; line-height:20px; color:#626b7f;">
+                    Not the right time? Just reply and let us know — we'll follow up whenever works
+                    better for you, or drop it entirely if you'd rather not hear from us again.
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Spacer -->
+          <tr><td style="height:32px; line-height:32px; font-size:0;">&nbsp;</td></tr>
+
+          <!-- Social / secondary links -->
+          <tr>
+            <td align="center" style="padding-bottom:24px;">
+              <a href="mailto:hello@powerlevel.gg" style="font-family:Arial,Helvetica,sans-serif; font-size:13px; color:#9aa3b7; padding:0 10px;">hello@powerlevel.gg</a>
+            </td>
+          </tr>
+
+          <!-- Footer: compliance -->
+          <tr>
+            <td align="center" style="font-family:Arial,Helvetica,sans-serif; font-size:12px; line-height:19px; color:#626b7f; padding:0 16px;">
+              Power Level Collective, LLC<br>
+              2108 N St Ste N, Sacramento, CA 95816 US
+              <br><br>
+              You're receiving this because you shared your contact info at powerlevel.gg.<br>
+              <a href="{% unsubscribe %}" style="color:#9aa3b7;">Unsubscribe</a>
+              &nbsp;·&nbsp;
+              <a href="https://powerlevel.gg/privacy" style="color:#9aa3b7;">Privacy Policy</a>
+              &nbsp;·&nbsp;
+              <a href="https://powerlevel.gg/terms" style="color:#9aa3b7;">Terms</a>
+            </td>
+          </tr>
+
+          <tr><td style="height:32px; line-height:32px; font-size:0;">&nbsp;</td></tr>
+
+        </table>
+
+      </td>
+    </tr>
+  </table>
+  <!--[if mso]>
+  </td></tr></table>
+  <![endif]-->
+  </center>
+
+</body>
+</html>
